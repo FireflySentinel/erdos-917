@@ -1,4 +1,4 @@
-# Erdős Problem #917 — twelve-critical graphs with $(2/5-o(1))n^2$ edges
+# Erdős Problem #917 — twelve-critical graphs with $(2/5+o(1))n^2$ edges
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22348353.svg)](https://doi.org/10.5281/zenodo.22348353)
 
@@ -12,10 +12,10 @@ the residue class $3\mid k$, which earlier counterexamples did not reach.
 
 | | |
 |---|---|
-| Manuscript | 6 pages, 5 September 2026 — [`PROOF.pdf`](PROOF.pdf), [`PROOF.tex`](PROOF.tex) |
-| DOI | [10.5281/zenodo.22348353](https://doi.org/10.5281/zenodo.22348353) (always the latest version) |
+| Manuscript | v2, 6 pages, 5 September 2026 — [`PROOF.pdf`](PROOF.pdf), [`PROOF.tex`](PROOF.tex) |
+| DOI | [10.5281/zenodo.22348353](https://doi.org/10.5281/zenodo.22348353) (always the latest version; v2 is [10.5281/zenodo.22349927](https://doi.org/10.5281/zenodo.22349927)) |
 | erdosproblems.com | listed **open** as of 5 September 2026, no proof claims submitted |
-| Refereeing | not yet refereed; the AI-assisted checks are not independent human verification |
+| Refereeing | not yet refereed |
 
 ## What this does and does not settle
 
@@ -37,6 +37,10 @@ Stiebitz's constructions had already refuted (iii) for $k\not\equiv 0\pmod 3$; t
 $3\mid k$ — where the join of $k/3$ equal odd cycles exactly attains the conjectured
 coefficient — was the one still standing. $k=12$ falls in that case.
 
+Note that (ii) is the $k=6$ *instance* of (iii), since $\frac12(1-\frac12)=\frac14$. A
+counterexample at $k=12$ refutes (iii) as a general formula but leaves that instance
+untouched.
+
 > **The middle question, $f_6(n)\sim n^2/4$, is neither proved nor disproved here.**
 
 The coefficient $2/5$ sits below the known upper bounds: Stiebitz's
@@ -47,7 +51,7 @@ $f_k(n)<\mathrm{ex}(n;K_{k-1})$ and the improvement of Luo, Ma and Yang
 
 **Theorem 1.** There is a sequence of twelve-critical graphs $G_s$ such that
 
-$$|V(G_s)|\to\infty,\qquad \frac{e(G_s)}{|V(G_s)|^2}\longrightarrow\frac25 .$$
+$$|V(G_s)|\to\infty,\qquad e(G_s)=\left(\frac25+o(1)\right)|V(G_s)|^2 .$$
 
 In particular $f_{12}(n)\not\sim 3n^2/8$.
 
@@ -64,22 +68,21 @@ $K_5$-saturated $H$ with $\Delta(H)<|H|-1$ and an odd $h\ge 11$ with $|H|>40h\De
 the assembly yields a twelve-critical graph on $N=5(a+h+2v)$ vertices with $a=2hv$ and
 $e\ge 10a^2(1-\Delta/v)$. Taking $Q=h^2$ with $h=3^s$ drives $e/N^2\to 2/5$.
 
-## AI tool disclosure
+## Use of generative AI
 
-OpenAI Codex (GPT-6) was used substantially in the development of this work, including
-the composition of saturated graphs with the coloring module, the proof of criticality,
-literature retrieval, and preparation and checking of the manuscript. The author selected
-the problem and directed the research. An exact-arithmetic script was also used to check
-the parameter counts; the proof is independent of that computation. The author is
-responsible for the mathematical content. This draft is circulated for review, and the
-AI-assisted checks are not presented as independent human verification.
+GPT-6 Astra was used to generate the mathematical proofs and draft the manuscript.
+GPT-5.6 Sol and Claude Opus 5 were used only for editorial review of the exposition.
+GPT-6 Astra was run in a research environment containing earlier results produced by
+GPT-5.6 Sol and Claude Opus 5, but those earlier results did not contribute to the final
+mathematical arguments. The author reviewed the final manuscript and takes full
+responsibility for its content.
 
 ## Citation
 
 ```bibtex
 @misc{gu2026erdos917,
   author       = {Qiyuan Gu},
-  title        = {Twelve-critical graphs with $(2/5-o(1))n^2$ edges},
+  title        = {Twelve-critical graphs with $(2/5+o(1))n^2$ edges},
   year         = {2026},
   doi          = {10.5281/zenodo.22348353},
   howpublished = {Preprint, Zenodo},
