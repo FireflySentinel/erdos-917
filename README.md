@@ -12,8 +12,8 @@ the residue class $3\mid k$, which earlier counterexamples did not reach.
 
 | | |
 |---|---|
-| Manuscript | v2, 6 pages, 5 September 2026 — [`PROOF.pdf`](PROOF.pdf), [`PROOF.tex`](PROOF.tex) |
-| DOI | [10.5281/zenodo.22348353](https://doi.org/10.5281/zenodo.22348353) (always the latest version; v2 is [10.5281/zenodo.22349927](https://doi.org/10.5281/zenodo.22349927)) |
+| Manuscript | v3, 6 pages, 5 September 2026 — [`PROOF.pdf`](PROOF.pdf), [`PROOF.tex`](PROOF.tex) |
+| DOI | [10.5281/zenodo.22348353](https://doi.org/10.5281/zenodo.22348353) (always the latest version; this version is [10.5281/zenodo.22352283](https://doi.org/10.5281/zenodo.22352283)) |
 | erdosproblems.com | listed **open** as of 5 September 2026, no proof claims submitted |
 | Refereeing | not yet refereed |
 
@@ -26,16 +26,16 @@ in a $k$-critical graph on $n$ vertices:
 |---|---|---|
 | (i) | $f_k(n)\gg_k n^2$ for $k\ge 4$? | **yes** — Toft (1970) |
 | (ii) | $f_6(n)\sim n^2/4$? | **open — this paper says nothing about it** |
-| (iii) | $f_k(n)\sim\frac12\left(1-\frac{1}{\lfloor k/3\rfloor}\right)n^2$ for $k\ge 6$? | refuted for $3\nmid k$ by Stiebitz (1987); **refuted here for $k=12$** |
+| (iii) | $f_k(n)\sim\frac12\left(1-\frac{1}{\lfloor k/3\rfloor}\right)n^2$ for $k\ge 6$? | already known to fail for $3\nmid k$; **refuted here for $k=12$** |
 
 This paper addresses **(iii) only**, at $k=12$:
 
 $$\text{conjectured coefficient } \tfrac12\left(1-\tfrac14\right)=\tfrac38,
 \qquad\text{construction}\longrightarrow\tfrac25>\tfrac38 .$$
 
-Stiebitz's constructions had already refuted (iii) for $k\not\equiv 0\pmod 3$; the case
-$3\mid k$ — where the join of $k/3$ equal odd cycles exactly attains the conjectured
-coefficient — was the one still standing. $k=12$ falls in that case.
+Formula (iii) was already known to fail for $k\not\equiv 0\pmod 3$; the case $3\mid k$ —
+where joining $k/3$ equal odd cycles attains the conjectured coefficient exactly — was the
+one still standing. $k=12$ falls in that case.
 
 Note that (ii) is the $k=6$ *instance* of (iii), since $\frac12(1-\frac12)=\frac14$. A
 counterexample at $k=12$ refutes (iii) as a general formula but leaves that instance
@@ -43,9 +43,8 @@ untouched.
 
 > **The middle question, $f_6(n)\sim n^2/4$, is neither proved nor disproved here.**
 
-The coefficient $2/5$ sits below the known upper bounds: Stiebitz's
-$f_k(n)<\mathrm{ex}(n;K_{k-1})$ and the improvement of Luo, Ma and Yang
-([arXiv:2301.01656](https://arxiv.org/abs/2301.01656)) both exceed $0.449$ at $k=12$.
+The coefficient $2/5$ sits below the known upper bounds for $k=12$, which stand above
+$0.449$ (Luo, Ma and Yang, [arXiv:2301.01656](https://arxiv.org/abs/2301.01656)).
 
 ## Main theorem
 
