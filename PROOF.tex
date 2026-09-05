@@ -19,7 +19,7 @@
 \newcommand{\col}{\operatorname{col}}
 
 \title{Twelve-critical graphs with\\
-\texorpdfstring{\(\left(\frac25-o(1)\right)n^2\)}{(2/5 - o(1)) n squared} edges}
+\texorpdfstring{\(\left(\frac25+o(1)\right)n^2\)}{(2/5 + o(1)) n squared} edges}
 \author{Qiyuan Gu\\
 University of Chicago\\
 \href{mailto:phoenix1203@uchicago.edu}{\texttt{phoenix1203@uchicago.edu}}}
@@ -30,33 +30,35 @@ University of Chicago\\
 
 \begin{abstract}
 Let \(f_k(n)\) denote the maximum number of edges in a \(k\)-critical
-graph on \(n\) vertices. We construct a sequence of twelve-critical
-graphs \(G_s\), with orders tending to infinity, such that
-\(e(G_s)/|V(G_s)|^2\to2/5\). This disproves the asymptotic formula
-\(f_{12}(n)\sim3n^2/8\), and hence the general asymptotic conjecture
-in Erd\H{o}s Problem 917 even when the chromatic number is divisible
-by three. The construction combines \(K_5\)-saturated graphs of
-sublinear maximum degree with a coloring module of Pegden. Its
-criticality follows from explicit eleven-colorings after the deletion
-of each type of edge.
+graph on \(n\) vertices, where criticality is with respect to edge
+deletion. We construct a sequence of twelve-critical graphs \(G_s\)
+with \(|V(G_s)|\to\infty\) and
+\[
+ e(G_s)=\left(\frac25+o(1)\right)|V(G_s)|^2.
+\]
+Since \(2/5>3/8\), this disproves \(f_{12}(n)\sim3n^2/8\), and hence
+the general asymptotic formula proposed in Erd\H{o}s Problem 917.
+The construction combines a coloring module of Pegden with
+\(K_5\)-saturated graphs of sublinear maximum degree.
 \end{abstract}
 
 \section{Introduction}
 
-All graphs are finite and simple. A graph is \(k\)-critical if it has
-chromatic number \(k\) and every proper subgraph is
-\((k-1)\)-colorable. Write \(e(G)=|E(G)|\), and let \(f_k(n)\) be
-the largest number of edges in a \(k\)-critical graph on \(n\) vertices.
-One of the questions in Erd\H{o}s Problem 917 \cite{Erdos917} asks
-whether, for fixed \(k\ge6\),
+All graphs are finite and simple. Following Erd\H{o}s Problem 917,
+a graph is \(k\)-critical if it has chromatic number \(k\) and deleting
+any edge lowers its chromatic number. Write \(e(G)=|E(G)|\), and let
+\(f_k(n)\) be the largest number of edges in a \(k\)-critical graph on
+\(n\) vertices. Erd\H{o}s \cite{Erdos1969,Erdos1993} asked whether,
+in the formulation recorded as Problem 917 \cite{Erdos917}, for fixed
+\(k\ge6\),
 \begin{equation}\label{eq:conjecture}
  f_k(n)\sim\frac12\left(1-\frac1{\lfloor k/3\rfloor}\right)n^2.
 \end{equation}
 Known constructions exceed this coefficient when \(3\nmid k\);
-see the discussion in Luo, Ma, and Yang \cite{LMY}.
-For \(3\mid k\), the join of \(k/3\) odd cycles of equal order
-gives the coefficient in \eqref{eq:conjecture}. We show that this
-coefficient is not optimal for \(k=12\).
+see Luo, Ma, and Yang \cite{LMY}. For \(3\mid k\), the join of
+\(k/3\) odd cycles of equal order gives the coefficient in
+\eqref{eq:conjecture} \cite{Erdos1969}. We show that the coefficient
+is not optimal for \(k=12\).
 
 \begin{theorem}\label{thm:main}
 There is a sequence of twelve-critical graphs \(G_s\) such that
@@ -68,39 +70,17 @@ There is a sequence of twelve-critical graphs \(G_s\) such that
 In particular, \(f_{12}(n)\not\sim3n^2/8\).
 \end{theorem}
 
-The conclusion concerns the general formula \eqref{eq:conjecture}.
-It does not resolve the separate question whether
-\(f_6(n)\sim n^2/4\).
-
-The two ingredients are the coloring module \(U(S,T)\) introduced
-by Pegden \cite{Pegden} and the saturated graphs of small maximum
-degree constructed by Alon, Erd\H{o}s, Holzman, and Krivelevich
-\cite{AEHK}. We use five copies of the module. Between their active
-sets, we take the complement of a graph obtained from a
-\(K_5\)-saturated graph. The maximum-degree condition forces two
-colors in each active set to be absent from the other four active
-sets. An eleven-coloring would then require a common additional
-color in all five sets, contradicting the absence of \(K_5\) in the
-saturated graph. Saturation supplies the colorings needed after
-an edge is deleted.
+The construction combines the coloring module \(U(S,T)\) of
+Pegden \cite{Pegden} with the saturated graphs of small maximum degree
+constructed by Alon, Erd\H{o}s, Holzman, and Krivelevich \cite{AEHK}.
 
 \section{A coloring module}
 \label{sec:module}
 
-We first recall two elementary properties of critical graphs.
-If \(F\) is \(p\)-critical and \(x\in V(F)\), then \(F\) has a
-\(p\)-coloring in which a prescribed color occurs only at \(x\):
-color \(F-x\) with the other \(p-1\) colors. Also, the join
-\(F_1\vee F_2\) of a \(p\)-critical graph and a \(q\)-critical
-graph is \((p+q)\)-critical. Its chromatic number is \(p+q\).
-Deleting an edge within a factor saves one color. After deleting
-a joining edge \(xy\), use singleton colors at \(x\) and \(y\)
-and identify those two colors, keeping the remaining palettes
-disjoint. Vertex deletion likewise saves a color in one factor.
-
-Let \(S\) be eleven-critical and \(T\) be ten-critical.
-The module \(U(S,T)\) consists of disjoint copies of \(S\) and
-\(T\), together with an independent set
+Let \(S\) be an eleven-chromatic graph every proper subgraph of which
+is ten-colorable, and let \(T\) be a ten-chromatic graph every proper
+subgraph of which is nine-colorable. The module \(U(S,T)\) consists of
+disjoint copies of \(S\) and \(T\), together with an independent set
 \[
  A=V(S)\times V(T).
 \]
@@ -109,9 +89,9 @@ Each \((x,y)\in A\) is adjacent to \(x\in V(S)\) and
 no other edges. We call \(A\) the active set and call
 \(\{x\}\times V(T)\) the row indexed by \(x\).
 
-The following properties are the case \(U(11,10)\) of Pegden's
-module lemma \cite[Lemma 2.5]{Pegden}. We include the proof for the
-graphs used here; it does not require the factors to be triangle-free.
+The following is the case \(U(11,10)\) of Pegden's module lemma
+\cite[Lemma 2.5]{Pegden}. We give the short proof because the specified
+colorings will be used below.
 
 \begin{lemma}\label{lem:module}
 Fix a palette of eleven colors.
@@ -203,9 +183,11 @@ Set \(\ell=2v\) and take
 \[
  S=K_8\vee C_{h-8},\qquad T=K_7\vee C_{\ell-7}.
 \]
-Both cycles are odd and have length at least three. Hence \(S\)
-and \(T\) are eleven-critical and ten-critical, respectively,
-with \(h\) and \(\ell\) vertices.
+Both cycles are odd and have length at least three. Since complete
+graphs and odd cycles have every proper subgraph colorable with one
+fewer color, and this property is preserved under joins, \(S\) is
+eleven-chromatic with every proper subgraph ten-colorable, while
+\(T\) is ten-chromatic with every proper subgraph nine-colorable.
 
 Take five disjoint copies \(U_1,\ldots,U_5\) of \(U(S,T)\),
 with active sets \(A_1,\ldots,A_5\), each of size \(a=h\ell\).
@@ -266,13 +248,18 @@ so this copy of \(S\) would avoid \(\alpha\), contradicting
 A color used more than \(D\) times in \(A_i\) cannot occur in
 any other active set. A vertex of that color in another part
 would have to be adjacent in \(Z\) to all those more than
-\(D\) vertices, contrary to \(\Delta(Z)=D\).
-Choose two such colors in each part. These are ten distinct
-colors, each absent from the other four active sets. By
-Lemma~\ref{lem:module}(1), every active set needs a third color.
-The one remaining color must consequently occur in all five
-active sets. Choosing a vertex of this color in each part gives
-a \(K_5\) in \(Z\), a contradiction. Thus \(\chi(G)\ge12\).
+\(D\) vertices, contrary to \(\Delta(Z)=D\). Let \(B_i\) be the
+set of colors used more than \(D\) times in \(A_i\). The sets
+\(B_1,\ldots,B_5\) are pairwise disjoint and each has size at
+least two. If, say, \(|B_1|\ge3\), then the other four sets have
+size exactly two and together \(B_1\cup B_3\cup B_4\cup B_5\)
+contain at least nine colors. Thus \(A_2\) can use at most the
+two colors in \(B_2\), contrary to Lemma~\ref{lem:module}(1).
+Hence \(|B_i|=2\) for every \(i\). Exactly one color remains
+outside \(B_1\cup\cdots\cup B_5\), and Lemma~\ref{lem:module}(1)
+forces it to occur in every active set. Choosing a vertex of
+this color in each part gives a \(K_5\) in \(Z\), a contradiction.
+Thus \(\chi(G)\ge12\).
 
 \smallskip
 \noindent\emph{Colorings after edge deletion.}
@@ -304,10 +291,15 @@ is a proper eleven-coloring of \(G-e\).
 
 These cases include every edge of \(G\). Recoloring one endpoint
 of a deleted edge with a twelfth color gives \(\chi(G)\le12\).
-Thus \(\chi(G)=12\), and deletion of every edge lowers the
-chromatic number. The graph has no isolated vertices, so a
-subgraph missing a vertex is also contained in some \(G-e\).
-Consequently \(G\) is twelve-critical.
+Thus \(\chi(G)=12\), and \(G-e\) is eleven-colorable for every
+\(e\in E(G)\). Hence \(G\) is twelve-critical in the sense of
+Problem 917.
+
+Moreover, \(G\) has no isolated vertices. Therefore every proper
+subgraph of \(G\) is eleven-colorable as well: a proper spanning
+subgraph is contained in \(G-e\) for some missing edge \(e\), while
+if a vertex \(x\) is missing, choose an edge \(e\) incident with
+\(x\); the subgraph is again contained in \(G-e\).
 
 \smallskip
 \noindent\emph{Counting vertices and edges.}
@@ -346,14 +338,16 @@ graph \(H_Q\) with
 \end{equation}
 \end{lemma}
 
-To obtain this graph from Example 2 of \cite{AEHK}, set \(k=5\)
-and give each of the \(Q^2\) additional independent sets one
-vertex. The core has \(12Q(Q+1)\) vertices. Each core vertex has
-\(3(3Q-1)\) neighbors in its level, \(12Q\) in the other levels,
-and \(Q\) among the additional vertices. Its degree is therefore
-\(22Q-3\). Each additional vertex has degree \(12(Q+1)\),
-which is smaller for \(Q\ge4\). This gives
-\eqref{eq:H-parameters}; saturation is part of the cited construction.
+\begin{proof}
+In Example 2 of \cite{AEHK}, set \(k=5\) and give each of the
+\(Q^2\) additional independent sets one vertex. The core has
+\(12Q(Q+1)\) vertices. A core vertex has \(3(3Q-1)\) neighbors
+in its level, \(12Q\) in the other levels, and \(Q\) among the
+additional vertices, so its degree is \(22Q-3\). An additional
+vertex has degree \(12(Q+1)\), which is smaller for \(Q\ge4\).
+Thus \eqref{eq:H-parameters} holds, and the cited construction is
+\(K_5\)-saturated.
+\end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
 For each integer \(s\ge4\), set
@@ -392,17 +386,15 @@ Since \(2/5>3/8\), this subsequence rules out
 \(f_{12}(n)\sim3n^2/8\).
 \end{proof}
 
-\section*{AI tool disclosure}
+\section*{Use of generative AI}
 
-OpenAI Codex (GPT-6) was used substantially in the development of
-this work, including the composition of saturated graphs with the
-coloring module, the proof of criticality, literature retrieval,
-and preparation and checking of the manuscript. The author selected
-the problem and directed the research. An exact-arithmetic script
-was also used to check the parameter counts; the proof is independent
-of that computation. The author is responsible for the mathematical
-content. This draft is circulated for review, and the AI-assisted
-checks are not presented as independent human verification.
+GPT-6 Astra was used to generate the mathematical proofs and draft the
+manuscript. GPT-5.6 Sol and Claude Opus 5 were used only for editorial
+review of the exposition. GPT-6 Astra was run in a research environment
+containing earlier results produced by GPT-5.6 Sol and Claude Opus 5, but
+those earlier results did not contribute to the final mathematical
+arguments. The author reviewed the final manuscript and takes full
+responsibility for its content.
 
 \begin{thebibliography}{9}
 
@@ -411,6 +403,19 @@ N.~Alon, P.~Erd\H{o}s, R.~Holzman, and M.~Krivelevich,
 On \(k\)-saturated graphs with restrictions on the degrees,
 \emph{J. Graph Theory} \textbf{23} (1996), 1--20.
 \url{https://web.math.princeton.edu/~nalon/PDFS/aehk1.pdf}.
+
+\bibitem{Erdos1969}
+P.~Erd\H{o}s,
+Problems and results in chromatic graph theory,
+in \emph{Proof Techniques in Graph Theory}
+(Proc. Second Ann Arbor Graph Theory Conf., Ann Arbor, 1968),
+Academic Press, New York, 1969, 27--35.
+
+\bibitem{Erdos1993}
+P.~Erd\H{o}s,
+Some of my favorite solved and unsolved problems in graph theory,
+\emph{Quaest. Math.} \textbf{16} (1993), 333--350.
+\href{https://doi.org/10.1080/16073606.1993.9631741}{doi:10.1080/16073606.1993.9631741}.
 
 \bibitem{Erdos917}
 T.~F. Bloom,
@@ -421,7 +426,8 @@ Accessed 5 September 2026.
 \bibitem{LMY}
 C.~Luo, J.~Ma, and T.~Yang,
 On the maximum number of edges in \(k\)-critical graphs,
-\href{https://arxiv.org/abs/2301.01656}{arXiv:2301.01656}, 2023.
+\emph{Combin. Probab. Comput.} \textbf{32} (2023), 900--911.
+\href{https://doi.org/10.1017/S0963548323000238}{doi:10.1017/S0963548323000238}.
 
 \bibitem{Pegden}
 W.~Pegden,
