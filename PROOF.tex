@@ -48,17 +48,19 @@ All graphs are finite and simple. Following Erd\H{o}s Problem 917,
 a graph is \(k\)-critical if it has chromatic number \(k\) and deleting
 any edge lowers its chromatic number. Write \(e(G)=|E(G)|\), and let
 \(f_k(n)\) be the largest number of edges in a \(k\)-critical graph on
-\(n\) vertices. Erd\H{o}s \cite{Erdos1969,Erdos1993} asked whether,
-in the formulation recorded as Problem 917 \cite{Erdos917}, for fixed
-\(k\ge6\),
+\(n\) vertices. Erd\H{o}s \cite{Erdos1969} conjectured that, for fixed \(k\ge6\),
 \begin{equation}\label{eq:conjecture}
  f_k(n)\sim\frac12\left(1-\frac1{\lfloor k/3\rfloor}\right)n^2.
 \end{equation}
-Known constructions exceed this coefficient when \(3\nmid k\);
-see Luo, Ma, and Yang \cite{LMY}. For \(3\mid k\), the join of
-\(k/3\) odd cycles of equal order gives the coefficient in
-\eqref{eq:conjecture} \cite{Erdos1969}. We show that the coefficient
-is not optimal for \(k=12\).
+Dirac \cite{Dirac1952} gave the \(k=6\) construction obtained by
+joining two odd cycles of equal order, and Erd\H{o}s observed that it
+generalizes when \(3\mid k\), giving the coefficient in
+\eqref{eq:conjecture}. When \(3\nmid k\), Toft's constructions
+\cite{Toft1970} give larger coefficients. For background on dense
+critical graphs, see Jensen and Toft \cite[Section~5.1]{JensenToft}
+and Jensen \cite{Jensen2002}. We show that the coefficient in
+\eqref{eq:conjecture} is not optimal for \(k=12\). The problem is
+recorded as Erd\H{o}s Problem 917 \cite{Erdos917}.
 
 \begin{theorem}\label{thm:main}
 There is a sequence of twelve-critical graphs \(G_s\) such that
@@ -89,9 +91,10 @@ Each \((x,y)\in A\) is adjacent to \(x\in V(S)\) and
 no other edges. We call \(A\) the active set and call
 \(\{x\}\times V(T)\) the row indexed by \(x\).
 
-The following is the case \(U(11,10)\) of Pegden's module lemma
-\cite[Lemma 2.5]{Pegden}. We give the short proof because the specified
-colorings will be used below.
+The following properties are the \(U(11,10)\) case of Pegden's
+module lemma \cite[Lemma 2.5]{Pegden}, except that Pegden assumes the
+factor graphs to be triangle-free. The proof below shows directly that
+this hypothesis is not needed for the properties used here.
 
 \begin{lemma}\label{lem:module}
 Fix a palette of eleven colors.
@@ -183,11 +186,15 @@ Set \(\ell=2v\) and take
 \[
  S=K_8\vee C_{h-8},\qquad T=K_7\vee C_{\ell-7}.
 \]
-Both cycles are odd and have length at least three. Since complete
-graphs and odd cycles have every proper subgraph colorable with one
-fewer color, and this property is preserved under joins, \(S\) is
-eleven-chromatic with every proper subgraph ten-colorable, while
-\(T\) is ten-chromatic with every proper subgraph nine-colorable.
+Both cycles are odd and have length at least three. Complete graphs
+and odd cycles have every proper subgraph colorable with one fewer
+color, and this property is preserved under joins. Indeed, deleting a
+vertex or an edge within one factor saves a color in that factor; if a
+joining edge \(xy\) is deleted, color each factor so that a prescribed
+color occurs only at \(x\), respectively \(y\), and identify those two
+colors. Hence \(S\) is eleven-chromatic with every proper subgraph
+ten-colorable, while \(T\) is ten-chromatic with every proper subgraph
+nine-colorable.
 
 Take five disjoint copies \(U_1,\ldots,U_5\) of \(U(S,T)\),
 with active sets \(A_1,\ldots,A_5\), each of size \(a=h\ell\).
@@ -229,7 +236,7 @@ with a triangle in the common neighborhood gives a \(K_4\) in
 
 Third, writing \(D=\Delta(Z)\), condition \eqref{eq:degree-condition} gives
 \begin{equation}\label{eq:D}
- D=4bd=8hd,\qquad \ell>10D,
+ D=4bd=8hd,\qquad \ell>10D.
 \end{equation}
 
 \smallskip
@@ -404,6 +411,12 @@ On \(k\)-saturated graphs with restrictions on the degrees,
 \emph{J. Graph Theory} \textbf{23} (1996), 1--20.
 \url{https://web.math.princeton.edu/~nalon/PDFS/aehk1.pdf}.
 
+\bibitem{Dirac1952}
+G.~A. Dirac,
+A property of 4-chromatic graphs and some remarks on critical graphs,
+\emph{J. London Math. Soc.} \textbf{27} (1952), 85--92.
+\href{https://doi.org/10.1112/jlms/s1-27.1.85}{doi:10.1112/jlms/s1-27.1.85}.
+
 \bibitem{Erdos1969}
 P.~Erd\H{o}s,
 Problems and results in chromatic graph theory,
@@ -411,23 +424,27 @@ in \emph{Proof Techniques in Graph Theory}
 (Proc. Second Ann Arbor Graph Theory Conf., Ann Arbor, 1968),
 Academic Press, New York, 1969, 27--35.
 
-\bibitem{Erdos1993}
-P.~Erd\H{o}s,
-Some of my favorite solved and unsolved problems in graph theory,
-\emph{Quaest. Math.} \textbf{16} (1993), 333--350.
-\href{https://doi.org/10.1080/16073606.1993.9631741}{doi:10.1080/16073606.1993.9631741}.
-
 \bibitem{Erdos917}
 T.~F. Bloom,
 \emph{Erd\H{o}s Problem \#917},
 \url{https://www.erdosproblems.com/917}.
 Accessed 5 September 2026.
 
-\bibitem{LMY}
-C.~Luo, J.~Ma, and T.~Yang,
-On the maximum number of edges in \(k\)-critical graphs,
-\emph{Combin. Probab. Comput.} \textbf{32} (2023), 900--911.
-\href{https://doi.org/10.1017/S0963548323000238}{doi:10.1017/S0963548323000238}.
+\bibitem{Jensen2002}
+T.~R. Jensen,
+Dense critical and vertex-critical graphs,
+\emph{Discrete Math.} \textbf{258} (2002), 63--84.
+\href{https://doi.org/10.1016/S0012-365X(02)00262-5}{doi:10.1016/S0012-365X(02)00262-5}.
+
+\bibitem{JensenToft}
+T.~R. Jensen and B.~Toft,
+\emph{Graph Coloring Problems},
+Wiley-Interscience, New York, 1995.
+
+\bibitem{Toft1970}
+B.~Toft,
+On the maximal number of edges of critical \(k\)-chromatic graphs,
+\emph{Studia Sci. Math. Hungar.} \textbf{5} (1970), 461--470.
 
 \bibitem{Pegden}
 W.~Pegden,
