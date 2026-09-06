@@ -1,65 +1,66 @@
-# Lean formalization of criticality in Erdős #917
+# Lean formalization of Erdős #917
 
-The criticality argument of **Lemma 2 and Proposition 3** in manuscript v3 is formalized in Lean 4. The source manuscript is `FireflySentinel/erdos-917` at commit `5e5ecf9edeaf21a7171988532ffaff2a3e452a93` (5 September 2026). The Lean code was developed against that GitHub revision. `PROOF.tex` and `PROOF.pdf` are unchanged.
+The project formalizes **Lemma 2 and the full Proposition 3**, together with the parameter choice and asymptotic deduction in **Theorem 1** of manuscript v3. The existence of the AEHK family of saturated graphs is the external mathematical input.
 
-## Main result
+## Conversion theorem
 
-[`conversion_twelve_critical`](Erdos917/Main.lean) proves that the actual five-module construction is twelve-critical for **every** finite graph H and every parameter h satisfying Proposition 3's assumptions:
+For a finite graph H with v ≥ 5 vertices, the construction is `conversionGraph H h hv`. Under Proposition 3's assumptions (K5 saturation, odd h ≥ 11, degrees at most d < v − 1, and 40hd < v), the following theorems establish:
 
-- v = |V(H)| ≥ 5, h ≥ 11, and h odd;
-- H has no K5, and adding any missing edge creates a K5;
-- every degree in H is at most d, with d < v − 1;
-- 40hd < v.
+- `conversion_twelve_critical`: chromatic number 12 and every proper subgraph 11-colorable;
+- `conversion_order`: N = 5(2hv + h + 2v);
+- `conversion_edgeCount`: e(G) = 10((2hv)² − 8h²m) + 5(4hv + 9h + 16v − 79), where m = e(H);
+- `conversion_edgeCount_lower`: e(G) ≥ 10(2hv)²(1 − d/v).
 
-The conclusion uses the following explicit definition:
+The edge counts are proved for the same graph used in the criticality theorem. `edgeCount` is the cardinality of the unordered edge set, with `edgeCount_eq_card_edgeFinset` identifying it with mathlib's `edgeFinset.card`. The exact formula uses real subtraction.
 
-```lean
-def IsCritical (G : SimpleGraph V) (k : ℕ) : Prop :=
-  G.chromaticNumber = k ∧
-    ∀ Q : G.Subgraph, Q ≠ ⊤ → Q.coe.Colorable (k-1)
+S is K8 joined to C_(h−8), and T is K7 joined to C_(2v−7). The count splits into structural edges, two edges at each active vertex, and edges retained between distinct active parts. The labeling equivalence supplies exactly 2h occurrences of each H vertex per active part.
+
+## Asymptotic counterexample and external input
+
+[`AEHK.Family`](Erdos917/Counterexample.lean) states the required instance of the AEHK result: for each s ≥ 0, a K5-saturated graph on v_s vertices with degrees at most d_s, where
+
+```text
+h_s = 3^(s+4),   v_s = 13h_s⁴ + 12h_s²,   d_s = 22h_s² − 3.
 ```
 
-Thus it quantifies over **all proper subgraphs, including those missing vertices**. It is stronger than checking edge counts, a particular finite example, or only vertex deletion. `conversion_chromaticNumber` states χ(G) = 12 separately. `conversion_delete_edge_colorable` states that deleting **any edge** gives an eleven-colorable graph; this latter conclusion does not require the size inequality 40hd < v.
+This is Lemma 4 specialized to Q = h_s². Its existence proof is not formalized. The parameter inequalities, oddness, and limits used to apply Proposition 3 are proved in [`Parameters.lean`](Erdos917/Parameters.lean).
 
-`conversionGraph` constructs the modules and their cross edges explicitly. S is K8 joined to C_(h−8), T is K7 joined to C_(2v−7). Successive additions of universal vertices implement the joins. The T vertices are identified with V(H) × Bool by a finite equivalence. The eleven-color palette is `Option (Fin 5 × Bool)`: two private colors per part, and one shared color. `conversion_order` also verifies the vertex count 5(2hv + h + 2v).
+For `F : AEHK.Family`, `AEHK.counterexample F s` is the actual conversion graph. The project proves its twelve-criticality and that its orders tend to infinity. The density theorem is:
 
-## Correspondence with the paper
+```lean
+theorem counterexample_density (F : Family) :
+    Tendsto (fun s => (edgeCount (counterexample F s) : ℝ) /
+      (Fintype.card (Vertex s) : ℝ) ^ 2) atTop (𝓝 (2 / 5 : ℝ))
+```
 
-| Manuscript argument | Lean source |
+`AEHK.not_density_three_eighths` then excludes a density limit of 3/8 for any function f satisfying f(N_s) ≥ e(G_s), as the extremal function f₁₂ does. Thus the asymptotic counterexample is formalized conditional on the stated AEHK input. The separate k = 6 question is outside the paper's result.
+
+## Proof correspondence
+
+| Manuscript argument | Lean source and theorem |
 |---|---|
-| Odd-cycle criticality, including deletion of any cycle edge | [OddCycle.lean](Erdos917/OddCycle.lean) |
+| Odd-cycle criticality and arbitrary cycle-edge deletion | [OddCycle.lean](Erdos917/OddCycle.lean) |
 | Joining a clique preserves criticality | [Cone.lean](Erdos917/Cone.lean) |
-| U(S,T): at least three active colors; prescribed singleton active color; all four internal edge-deletion cases | [Module.lean](Erdos917/Module.lean) |
+| Lemma 2: active colors, prescribed singleton, four module-edge deletion cases | [Module.lean](Erdos917/Module.lean) |
 | Standard saturation gives a common-neighbor triangle | [SaturationDefinition.lean](Erdos917/SaturationDefinition.lean) |
-| Lifting saturation, including equal-label endpoints; transversal K4; degree bound | [Saturation.lean](Erdos917/Saturation.lean) |
-| Eleven-color impossibility using large private color classes | [Assembly.lean](Erdos917/Assembly.lean) |
-| All cross-module and internal edge-deletion colorings | [Deletion.lean](Erdos917/Deletion.lean) |
-| No isolated vertices; all proper subgraphs; exact chromatic number | [Critical.lean](Erdos917/Critical.lean) |
-| Instantiation with the manuscript's S, T, H and h | [Main.lean](Erdos917/Main.lean) |
+| Saturation lift, equal labels, transversal K4, degree bound | [Saturation.lean](Erdos917/Saturation.lean) |
+| Eleven-color impossibility | [Assembly.lean](Erdos917/Assembly.lean), `not_eleven_colorable` |
+| All cross-part and internal edge-deletion colorings | [Deletion.lean](Erdos917/Deletion.lean) |
+| Proper subgraphs and chromatic number | [Critical.lean](Erdos917/Critical.lean), [Main.lean](Erdos917/Main.lean) |
+| Proposition 3, exact edge formula (3.5) and lower bound (3.4) | [EdgeCount.lean](Erdos917/EdgeCount.lean), `conversion_edgeCount`, `conversion_edgeCount_lower` |
+| Choice h = 3^s and all numerical hypotheses | [Parameters.lean](Erdos917/Parameters.lean) |
+| Density limit from the edge formula and degree-sum bound | [Density.lean](Erdos917/Density.lean), `density_limit_of_parameters` |
+| Theorem 1 and the extremal-function consequence | [Counterexample.lean](Erdos917/Counterexample.lean) |
 
-The lower-bound proof selects two large colors in each part. They are ten distinct private colors; Lemma 2 forces every part to use the unique remaining color. This gives the forbidden transversal K5. This formulation avoids needing the additional statement that each part has exactly two large colors, while proving the same obstruction.
+## Build
 
-The auxiliary `Scaffold` and `CriticalData` structures organize proofs. They are **proved for the construction**, not additional hypotheses of `conversion_twelve_critical`. In particular, the theorem's saturation input is the standard statement about H ⊔ edge z w, not an assumed transversal-completion lemma.
-
-## Scope and external input
-
-This completes the criticality component requested here. The existence of the AEHK family of saturated graphs, its degree and order formulas, the edge-count formula, and the asymptotic density argument are **not formalized in this project**. The result is a fully proved conditional conversion theorem; it does not by itself provide an unconditional Lean proof of the entire asymptotic counterexample. It says nothing about the separate k = 6 question.
-
-There are no `sorry`, `admit`, custom `axiom` declarations, `native_decide`, or external solver certificates in the project. The main results use only Lean's standard axioms `propext`, `Classical.choice`, and `Quot.sound`. Saturation and the numerical assumptions are ordinary quantified hypotheses, not axioms.
-
-## Reproduce verification
-
-Lean is pinned to `v4.33.0-rc2`; `lake-manifest.json` pins mathlib to `51e6992efd06126df61a496bebf8f49482a4e129` and records its transitive dependencies. With elan installed, run from this directory:
+The manuscript source is pinned to commit `5e5ecf9edeaf21a7171988532ffaff2a3e452a93`; `PROOF.tex` is unchanged in the later GitHub revision used for this extension. Lean is pinned to `v4.33.0-rc2`, and `lake-manifest.json` pins mathlib to `51e6992efd06126df61a496bebf8f49482a4e129`.
 
 ```sh
 lake exe cache get
 lake build
 lake env lean Check.lean
-LEAN_NUM_THREADS=2 lake env leanchecker -v Erdos917
+LEAN_NUM_THREADS=2 lake env leanchecker Erdos917
 ```
 
-`Check.lean` guards the axiom lists of the final results and the central supporting theorems. `leanchecker` replays all project declarations through Lean's kernel; it is an additional check using the same Lean implementation, not an independent proof assistant or human review. The GitHub Actions workflow performs the build, axiom checks, and kernel replay.
-
-The development checkout reuses an existing local mathlib cache through an ignored `.lake/packages` symlink. No project source depends on that path; a fresh checkout uses the pinned dependency manifest.
-
-Local verification on 2026-09-06T00:05:39.646174+00:00: `lake build` completed without warnings, `Check.lean` passed, and `leanchecker` replayed all eleven project modules with exit code 0. GitHub CI has been configured but was not run remotely during this task.
+[`Check.lean`](Check.lean) guards the axiom dependencies of the main results. The [GitHub workflow](https://github.com/FireflySentinel/erdos-917/actions/workflows/lean.yml) runs the build, axiom checks, and kernel replay.

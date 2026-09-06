@@ -35,3 +35,27 @@ import Erdos917
 /-- info: 'Erdos917.cliqueJoin_critical' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Erdos917.cliqueJoin_critical
+
+/-- info: 'Erdos917.conversion_edgeCount' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.conversion_edgeCount
+
+/-- info: 'Erdos917.conversion_edgeCount_lower' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.conversion_edgeCount_lower
+
+/-- info: 'Erdos917.AEHK.counterexample_critical' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.AEHK.counterexample_critical
+
+/-- info: 'Erdos917.AEHK.counterexample_order_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.AEHK.counterexample_order_tendsto
+
+/-- info: 'Erdos917.AEHK.counterexample_density' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.AEHK.counterexample_density
+
+/-- info: 'Erdos917.AEHK.not_density_three_eighths' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.AEHK.not_density_three_eighths

@@ -9,7 +9,7 @@ residue class $3\mid k$, which earlier counterexamples did not reach.
 **Qiyuan Gu**, University of Chicago
 
 [Preprint PDF](PROOF.pdf) · [LaTeX source](PROOF.tex) ·
-[Lean formalization](Erdos917/Main.lean) · [Build instructions](FORMALIZATION.md)
+[Lean formalization](Erdos917/Counterexample.lean) · [Build instructions](FORMALIZATION.md)
 
 Published version: [v4](https://doi.org/10.5281/zenodo.22442528), 6 September 2026, manuscript and Lean sources.
 
@@ -63,17 +63,17 @@ $h\ge 11$ with $|H|>40h\Delta(H)$, the assembly yields a twelve-critical graph o
 $N=5(a+h+2v)$ vertices with $a=2hv$ and $e\ge 10a^2(1-\Delta/v)$. Taking $Q=h^2$ with
 $h=3^s$ drives $e/N^2\to 2/5$.
 
-## Lean formalization of criticality
+## Lean formalization
 
-The criticality argument in Lemma 2 and Proposition 3 is formalized in Lean 4.
-[`conversion_twelve_critical`](Erdos917/Main.lean) proves that the constructed graph has
-chromatic number 12 and that every proper subgraph is 11-colorable, for every saturated
-$H$ and parameter $h$ satisfying Proposition 3. The development covers odd cycles, clique
-joins, the module lemma, saturation lifting, and every edge-deletion case.
+Lean 4 formalizes Lemma 2 and the full conversion in Proposition 3: twelve-criticality,
+the vertex count, the exact edge count, and its lower bound. It also verifies the
+parameter inequalities and the limit $e(G_s)/|V(G_s)|^2\to2/5$ in Theorem 1.
+The existence of the AEHK saturated graph family is the external mathematical input,
+stated explicitly as [`AEHK.Family`](Erdos917/Counterexample.lean).
 
-The AEHK existence theorem and the asymptotic density argument are not part of this
-formalization. [FORMALIZATION.md](FORMALIZATION.md) gives the exact theorem, the
-correspondence with the manuscript, the external inputs, and reproduction commands.
+[FORMALIZATION.md](FORMALIZATION.md) gives the theorem statements, proof correspondence,
+and build commands. [GitHub Actions](https://github.com/FireflySentinel/erdos-917/actions/workflows/lean.yml)
+runs the build, axiom checks, and kernel replay.
 
 ## Use of generative AI
 
@@ -83,6 +83,8 @@ GPT-6 Astra was run in a research environment containing earlier results produce
 GPT-5.6 Sol and Claude Opus 5, but those earlier results did not contribute to the final
 mathematical arguments. The author reviewed the final manuscript and takes full
 responsibility for its content.
+
+The Lean formalization was developed with OpenAI Codex (GPT-6).
 
 ## Citation
 

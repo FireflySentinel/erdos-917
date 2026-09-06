@@ -4,12 +4,12 @@
   "manuscript_version": "v3",
   "source_file": "PROOF.tex",
   "source_sha256": "98b76fca25422eae42768145368c84282435976b29af806a1f14bb5266794a35",
-  "upstream_head_rechecked_utc": "2026-09-06T00:03:06.138518+00:00",
-  "scope": "Lemma 2 and Proposition 3: complete criticality component; AEHK existence and asymptotic density not formalized",
+  "upstream_head_rechecked_utc": "2026-09-06T02:30:46.072144+00:00",
+  "scope": "Lemma 2 and full Proposition 3; Theorem 1 parameter choice, density limit, and extremal-function consequence, conditional on the explicit AEHK.Family input",
   "lean": "v4.33.0-rc2",
   "mathlib": "51e6992efd06126df61a496bebf8f49482a4e129",
   "verification": {
-    "utc": "2026-09-06T00:05:39.646174+00:00",
+    "utc": "2026-09-06T02:30:46.072144+00:00",
     "lake_build_exit": 0,
     "axiom_check_exit": 0,
     "leanchecker_exit": 0,
@@ -18,11 +18,15 @@
       "Erdos917.Assembly",
       "Erdos917.Basic",
       "Erdos917.Cone",
+      "Erdos917.Counterexample",
       "Erdos917.Critical",
       "Erdos917.Deletion",
+      "Erdos917.Density",
+      "Erdos917.EdgeCount",
       "Erdos917.Main",
       "Erdos917.Module",
       "Erdos917.OddCycle",
+      "Erdos917.Parameters",
       "Erdos917.Saturation",
       "Erdos917.SaturationDefinition"
     ],
@@ -31,6 +35,7 @@
       "Classical.choice",
       "Quot.sound"
     ],
-    "github_ci": "configured; not run remotely in this task"
-  }
+    "github_ci": "https://github.com/FireflySentinel/erdos-917/actions/workflows/lean.yml"
+  },
+  "upstream_head": "b5ee32f38ff44c13acd914f42912586e1a8dcfff"
 }
