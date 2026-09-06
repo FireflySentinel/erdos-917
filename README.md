@@ -4,8 +4,7 @@ Preprint disproving the general asymptotic conjecture in
 [Erdős Problem #917](https://www.erdosproblems.com/917) at $k=12$, the first case in the
 residue class $3\mid k$, which earlier counterexamples did not reach.
 
-[Preprint PDF](paper/PROOF.pdf) · [LaTeX source](paper/PROOF.tex) ·
-[Formalization notes](FORMALIZATION.md)
+[Preprint PDF](paper/PROOF.pdf) · [LaTeX source](paper/PROOF.tex)
 
 ## Build and check
 
@@ -27,6 +26,24 @@ gives the limit $e/N^2\to2/5$ and rules out $f_{12}(n)\sim 3n^2/8$.
 
 The existence of the AEHK family of $K_5$-saturated graphs is the external mathematical
 input and is not formalized.
+
+## Proof correspondence
+
+| Manuscript argument | Lean source and theorem |
+|---|---|
+| Odd-cycle criticality and arbitrary cycle-edge deletion | [OddCycle.lean](Erdos917/OddCycle.lean) |
+| Joining a clique preserves criticality | [Cone.lean](Erdos917/Cone.lean) |
+| Lemma 2: active colors, prescribed singleton, four module-edge deletion cases | [Module.lean](Erdos917/Module.lean) |
+| Standard saturation gives a common-neighbor triangle | [SaturationDefinition.lean](Erdos917/SaturationDefinition.lean) |
+| Saturation lift, equal labels, transversal K4, degree bound | [Saturation.lean](Erdos917/Saturation.lean) |
+| Eleven-color impossibility | [Assembly.lean](Erdos917/Assembly.lean), `not_eleven_colorable` |
+| All cross-part and internal edge-deletion colorings | [Deletion.lean](Erdos917/Deletion.lean) |
+| Proper subgraphs and chromatic number | [Critical.lean](Erdos917/Critical.lean), [Main.lean](Erdos917/Main.lean) |
+| Proposition 3, exact edge formula (3.4) and lower bound (3.3) | [EdgeCount.lean](Erdos917/EdgeCount.lean), `conversion_edgeCount`, `conversion_edgeCount_lower` |
+| Choice h = 3^s and all numerical hypotheses | [Parameters.lean](Erdos917/Parameters.lean) |
+| Density limit from the edge formula and degree-sum bound | [Density.lean](Erdos917/Density.lean), `density_limit_of_parameters` |
+| Relabeling critical graphs and the finite extremal maximum | [Extremal.lean](Erdos917/Extremal.lean), `IsCritical.iso`, `f12_attained`, `edgeCount_le_f12` |
+| Theorem 1 and the extremal-function consequence | [Counterexample.lean](Erdos917/Counterexample.lean) |
 
 ## Use of generative AI
 
