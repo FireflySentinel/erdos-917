@@ -14,18 +14,25 @@ With [Elan](https://github.com/leanprover/elan) installed, run from the reposito
 lake exe cache get
 lake build
 lake env lean checks/Check.lean
-LEAN_NUM_THREADS=2 lake env leanchecker Erdos917
+LEAN_NUM_THREADS=2 lake env leanchecker -v Erdos917
 ```
+
+`leanchecker Erdos917` checks every compiled module with that name prefix;
+`-v` lists the modules in the CI log.
 
 ## Exact statement
 
 [`Erdos917.conversion_twelve_critical`](Erdos917/Main.lean) proves that the five-module
 construction is twelve-critical: chromatic number 12, and every proper subgraph, including
 those missing vertices, is 11-colorable. [`Erdos917.AEHK.counterexample_density`](Erdos917/Counterexample.lean)
-gives the limit $e/N^2\to2/5$ and rules out $f_{12}(n)\sim 3n^2/8$.
+gives the limit $e/N^2\to2/5$. [`f12_not_density_below_two_fifths`](Erdos917/Counterexample.lean)
+rules out any limit below $2/5$ for $f_{12}(n)/n^2$, with $f_{12}$ defined under
+Problem 917's edge-deletion convention.
 
 The existence of the AEHK family of $K_5$-saturated graphs is the external mathematical
-input and is not formalized.
+input, stated as [`AEHK.Family`](Erdos917/Counterexample.lean), and is not formalized.
+The manuscript's final remark extends the construction to other chromatic numbers;
+the Lean development covers $k=12$.
 
 ## Proof correspondence
 
@@ -47,11 +54,7 @@ input and is not formalized.
 
 ## Use of generative AI
 
-GPT-6 Astra was used to generate the mathematical proofs and draft the manuscript.
-GPT-5.6 Sol and Claude Opus 5 were used only for editorial review of the exposition.
-GPT-6 Astra was run in a research environment containing earlier results produced by
-GPT-5.6 Sol and Claude Opus 5, but those earlier results did not contribute to the final
-mathematical arguments. The author reviewed the final manuscript and takes full
-responsibility for its content.
-
-The Lean formalization was developed with OpenAI Codex (GPT-6).
+The proofs and the first draft were generated with GPT-6 Astra;
+GPT-5.6 Sol and Claude Opus 5 were used for editorial review;
+the Lean formalization was developed with OpenAI Codex (GPT-6).
+The author checked the arguments and is responsible for the content.

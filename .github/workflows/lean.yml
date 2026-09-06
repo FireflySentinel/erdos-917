@@ -24,4 +24,4 @@ jobs:
       - name: Check axiom dependencies
         run: lake env lean checks/Check.lean
       - name: Replay project declarations through the kernel
-        run: lake env leanchecker Erdos917
+        run: lake env leanchecker -v Erdos917
