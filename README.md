@@ -4,8 +4,6 @@ Preprint disproving the general asymptotic conjecture in
 [Erdős Problem #917](https://www.erdosproblems.com/917) at $k=12$, the first case in the
 residue class $3\mid k$, which earlier counterexamples did not reach.
 
-[Preprint PDF](paper/PROOF.pdf) · [LaTeX source](paper/PROOF.tex)
-
 ## Build and check
 
 With [Elan](https://github.com/leanprover/elan) installed, run from the repository root:
