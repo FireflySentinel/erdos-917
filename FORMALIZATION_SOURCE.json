@@ -1,10 +1,8 @@
 {
   "repository": "FireflySentinel/erdos-917",
-  "manuscript_commit": "5e5ecf9edeaf21a7171988532ffaff2a3e452a93",
-  "manuscript_version": "v3",
   "source_file": "PROOF.tex",
-  "source_sha256": "98b76fca25422eae42768145368c84282435976b29af806a1f14bb5266794a35",
-  "upstream_head_rechecked_utc": "2026-09-06T02:30:46.072144+00:00",
+  "source_sha256": "6fdade71a9253f303cccde11a1273fe95a1278a42ee470a2dae9da50b6da0a53",
+  "upstream_head_rechecked_utc": "2026-09-06T02:43:06.071149+00:00",
   "scope": "Lemma 2 and full Proposition 3; Theorem 1 parameter choice, density limit, and extremal-function consequence, conditional on the explicit AEHK.Family input",
   "lean": "v4.33.0-rc2",
   "mathlib": "51e6992efd06126df61a496bebf8f49482a4e129",
@@ -37,5 +35,10 @@
     ],
     "github_ci": "https://github.com/FireflySentinel/erdos-917/actions/workflows/lean.yml"
   },
-  "upstream_head": "b5ee32f38ff44c13acd914f42912586e1a8dcfff"
+  "upstream_head": "7615f51e0fe3e34b221591bc19516b7136986e9d",
+  "formalization_baseline": {
+    "manuscript_commit": "5e5ecf9edeaf21a7171988532ffaff2a3e452a93",
+    "manuscript_version": "v3",
+    "source_sha256": "98b76fca25422eae42768145368c84282435976b29af806a1f14bb5266794a35"
+  }
 }

@@ -1,6 +1,6 @@
 # Lean formalization of Erdős #917
 
-The project formalizes **Lemma 2 and the full Proposition 3**, together with the parameter choice and asymptotic deduction in **Theorem 1** of manuscript v3. The existence of the AEHK family of saturated graphs is the external mathematical input.
+The project formalizes **Lemma 2 and the full Proposition 3**, together with the parameter choice and asymptotic deduction in **Theorem 1** of the manuscript. The existence of the AEHK family of saturated graphs is the external mathematical input.
 
 ## Conversion theorem
 
@@ -47,14 +47,14 @@ theorem counterexample_density (F : Family) :
 | Eleven-color impossibility | [Assembly.lean](Erdos917/Assembly.lean), `not_eleven_colorable` |
 | All cross-part and internal edge-deletion colorings | [Deletion.lean](Erdos917/Deletion.lean) |
 | Proper subgraphs and chromatic number | [Critical.lean](Erdos917/Critical.lean), [Main.lean](Erdos917/Main.lean) |
-| Proposition 3, exact edge formula (3.5) and lower bound (3.4) | [EdgeCount.lean](Erdos917/EdgeCount.lean), `conversion_edgeCount`, `conversion_edgeCount_lower` |
+| Proposition 3, exact edge formula (3.4) and lower bound (3.3) | [EdgeCount.lean](Erdos917/EdgeCount.lean), `conversion_edgeCount`, `conversion_edgeCount_lower` |
 | Choice h = 3^s and all numerical hypotheses | [Parameters.lean](Erdos917/Parameters.lean) |
 | Density limit from the edge formula and degree-sum bound | [Density.lean](Erdos917/Density.lean), `density_limit_of_parameters` |
 | Theorem 1 and the extremal-function consequence | [Counterexample.lean](Erdos917/Counterexample.lean) |
 
 ## Build
 
-The manuscript source is pinned to commit `5e5ecf9edeaf21a7171988532ffaff2a3e452a93`; `PROOF.tex` is unchanged in the later GitHub revision used for this extension. Lean is pinned to `v4.33.0-rc2`, and `lake-manifest.json` pins mathlib to `51e6992efd06126df61a496bebf8f49482a4e129`.
+The original manuscript baseline is commit `5e5ecf9edeaf21a7171988532ffaff2a3e452a93`. The current chromatic lower-bound proof uses the same direct pigeonhole argument and ten private colors as `Assembly.lean`. Lean is pinned to `v4.33.0-rc2`, and `lake-manifest.json` pins mathlib to `51e6992efd06126df61a496bebf8f49482a4e129`.
 
 ```sh
 lake exe cache get
