@@ -1,0 +1,36 @@
+{
+  "repository": "FireflySentinel/erdos-917",
+  "manuscript_commit": "5e5ecf9edeaf21a7171988532ffaff2a3e452a93",
+  "manuscript_version": "v3",
+  "source_file": "PROOF.tex",
+  "source_sha256": "98b76fca25422eae42768145368c84282435976b29af806a1f14bb5266794a35",
+  "upstream_head_rechecked_utc": "2026-09-06T00:03:06.138518+00:00",
+  "scope": "Lemma 2 and Proposition 3: complete criticality component; AEHK existence and asymptotic density not formalized",
+  "lean": "v4.33.0-rc2",
+  "mathlib": "51e6992efd06126df61a496bebf8f49482a4e129",
+  "verification": {
+    "utc": "2026-09-06T00:05:39.646174+00:00",
+    "lake_build_exit": 0,
+    "axiom_check_exit": 0,
+    "leanchecker_exit": 0,
+    "leanchecker_modules": [
+      "Erdos917",
+      "Erdos917.Assembly",
+      "Erdos917.Basic",
+      "Erdos917.Cone",
+      "Erdos917.Critical",
+      "Erdos917.Deletion",
+      "Erdos917.Main",
+      "Erdos917.Module",
+      "Erdos917.OddCycle",
+      "Erdos917.Saturation",
+      "Erdos917.SaturationDefinition"
+    ],
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "github_ci": "configured; not run remotely in this task"
+  }
+}

@@ -66,6 +66,18 @@ $h\ge 11$ with $|H|>40h\Delta(H)$, the assembly yields a twelve-critical graph o
 $N=5(a+h+2v)$ vertices with $a=2hv$ and $e\ge 10a^2(1-\Delta/v)$. Taking $Q=h^2$ with
 $h=3^s$ drives $e/N^2\to 2/5$.
 
+## Lean formalization of criticality
+
+The criticality argument in Lemma 2 and Proposition 3 is formalized in Lean 4.
+[`conversion_twelve_critical`](Erdos917/Main.lean) proves that the constructed graph has
+chromatic number 12 and that every proper subgraph is 11-colorable, for every saturated
+$H$ and parameter $h$ satisfying Proposition 3. The development covers odd cycles, clique
+joins, the module lemma, saturation lifting, and every edge-deletion case.
+
+The AEHK existence theorem and the asymptotic density argument are not part of this
+formalization. [FORMALIZATION.md](FORMALIZATION.md) gives the exact theorem, the
+correspondence with the manuscript, the external inputs, and reproduction commands.
+
 ## Use of generative AI
 
 GPT-6 Astra was used to generate the mathematical proofs and draft the manuscript.
