@@ -13,8 +13,6 @@ residue class $3\mid k$, which earlier counterexamples did not reach.
 
 Published version: [v5](https://doi.org/10.5281/zenodo.22448854), 6 September 2026, manuscript and Lean sources.
 
-Comments and corrections: [email](mailto:phoenix1203@uchicago.edu) or
-[issue](https://github.com/FireflySentinel/erdos-917/issues).
 
 ## What this settles
 
@@ -89,19 +87,3 @@ mathematical arguments. The author reviewed the final manuscript and takes full
 responsibility for its content.
 
 The Lean formalization was developed with OpenAI Codex (GPT-6).
-
-## Citation
-
-```bibtex
-@misc{gu2026erdos917,
-  author       = {Qiyuan Gu},
-  title        = {Twelve-critical graphs with $(2/5+o(1))n^2$ edges},
-  year         = {2026},
-  doi          = {10.5281/zenodo.22348353},
-  howpublished = {Preprint, Zenodo},
-  note         = {Erd\H{o}s Problem 917}
-}
-```
-
-Problem statement quoted from T. F. Bloom, *Erdős Problem #917*,
-<https://www.erdosproblems.com/917>.
