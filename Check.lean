@@ -59,3 +59,19 @@ import Erdos917
 /-- info: 'Erdos917.AEHK.not_density_three_eighths' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Erdos917.AEHK.not_density_three_eighths
+
+/-- info: 'Erdos917.IsCritical.iso' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.IsCritical.iso
+
+/-- info: 'Erdos917.f12_attained' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.f12_attained
+
+/-- info: 'Erdos917.edgeCount_le_f12' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.edgeCount_le_f12
+
+/-- info: 'Erdos917.AEHK.f12_not_density_below_two_fifths' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.AEHK.f12_not_density_below_two_fifths

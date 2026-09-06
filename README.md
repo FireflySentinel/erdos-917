@@ -50,9 +50,11 @@ $$|V(G_s)|\to\infty,\qquad e(G_s)=\left(\frac25+o(1)\right)|V(G_s)|^2 .$$
 
 In particular $f_{12}(n)\not\sim 3n^2/8$.
 
-Here *twelve-critical* means chromatic number $12$ with every proper subgraph
-$11$-colorable. The proof exhibits an explicit $11$-coloring after the deletion of each
-type of edge, so no critical subgraph has to be extracted.
+The manuscript defines *twelve-critical* by chromatic number $12$ and
+$11$-colorability after deleting any edge. The constructed graphs satisfy the stronger
+condition that every proper subgraph is $11$-colorable, also proved in Lean.
+The proof exhibits an explicit $11$-coloring after the deletion of each type of edge,
+so no critical subgraph has to be extracted.
 
 ## Method
 
@@ -68,6 +70,8 @@ $h=3^s$ drives $e/N^2\to 2/5$.
 Lean 4 formalizes Lemma 2 and the full conversion in Proposition 3: twelve-criticality,
 the vertex count, the exact edge count, and its lower bound. It also verifies the
 parameter inequalities and the limit $e(G_s)/|V(G_s)|^2\to2/5$ in Theorem 1.
+Lean defines $f_{12}$ as the finite extremal maximum under the manuscript's edge-deletion
+convention and proves that $f_{12}(n)/n^2$ cannot converge to any $c<2/5$, including $3/8$.
 The existence of the AEHK saturated graph family is the external mathematical input,
 stated explicitly as [`AEHK.Family`](Erdos917/Counterexample.lean).
 

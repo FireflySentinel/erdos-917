@@ -1,4 +1,4 @@
-import Erdos917.EdgeCount
+import Erdos917.Extremal
 import Erdos917.Density
 import Erdos917.Parameters
 
@@ -7,8 +7,11 @@ open SimpleGraph Filter Topology
 
 namespace AEHK
 
-/-- The external AEHK input, specialized to Q = (3^(s+4))².
-Order is encoded in the vertex type; the degree bound is stated without a decidability choice. -/
+/-- Manuscript Lemma 4, specialized to Q = (3^(s+4))²: AEHK, Example 2
+(Section 4), with k = 5 and one added vertex per truncated-plane line.
+This gives 12Q(Q+1) core vertices and Q² line vertices. Their respective degrees
+are 22Q-3 and 12(Q+1), so the latter is at most the former for Q ≥ 4.
+Existence of this family is the external input. -/
 structure Family where
   graph : (s : ℕ) → SimpleGraph (Fin (v s))
   free : ∀ s, (graph s).CliqueFree 5
@@ -78,16 +81,31 @@ theorem counterexample_density (F : Family) :
   · exact tendsto_inv_atTop_zero.comp (tendsto_natCast_atTop_atTop.comp v_tendsto)
   · exact degree_ratio_tendsto
 
-/-- Any extremal function dominating these critical graphs cannot have density limit 3/8. -/
-theorem not_density_three_eighths (F : Family) (f : ℕ → ℝ)
+/-- Any density limit of a function dominating the constructed graphs is at least 2/5. -/
+theorem density_limit_ge_two_fifths (F : Family) (f : ℕ → ℝ)
     (hf : ∀ s, (edgeCount (counterexample F s) : ℝ) ≤ f (Fintype.card (Vertex s))) :
-    ¬ Tendsto (fun n : ℕ => f n / (n : ℝ) ^ 2) atTop (𝓝 (3 / 8 : ℝ)) := by
-  intro hlim
+    ∀ {c : ℝ}, Tendsto (fun n : ℕ => f n / (n : ℝ) ^ 2) atTop (𝓝 c) → 2 / 5 ≤ c := by
+  intro c hlim
   have hsub := hlim.comp counterexample_order_tendsto
-  have hbound : (2 / 5 : ℝ) ≤ 3 / 8 :=
-    le_of_tendsto_of_tendsto' (counterexample_density F) hsub
-      (fun s => div_le_div_of_nonneg_right (hf s) (sq_nonneg _))
-  norm_num at hbound
+  exact le_of_tendsto_of_tendsto' (counterexample_density F) hsub
+    (fun s => div_le_div_of_nonneg_right (hf s) (sq_nonneg _))
+
+lemma counterexample_edgeCount_le_f12 (F : Family) (s : ℕ) :
+    edgeCount (counterexample F s) ≤ f12 (Fintype.card (Vertex s)) :=
+  edgeCount_le_f12 (counterexample_critical F s)
+
+/-- The extremal function in the problem cannot have any density limit below 2/5. -/
+theorem f12_not_density_below_two_fifths (F : Family) {c : ℝ} (hc : c < 2 / 5) :
+    ¬ Tendsto (fun n : ℕ => (f12 n : ℝ) / (n : ℝ) ^ 2) atTop (𝓝 c) := by
+  intro hlim
+  have hb := density_limit_ge_two_fifths F (fun n => (f12 n : ℝ))
+    (fun s => by exact_mod_cast counterexample_edgeCount_le_f12 F s) hlim
+  exact (not_le_of_gt hc) hb
+
+/-- The problem's proposed asymptotic formula fails at k = 12. -/
+theorem not_density_three_eighths (F : Family) :
+    ¬ Tendsto (fun n : ℕ => (f12 n : ℝ) / (n : ℝ) ^ 2) atTop (𝓝 (3 / 8 : ℝ)) :=
+  f12_not_density_below_two_fifths F (by norm_num)
 
 end AEHK
 end Erdos917

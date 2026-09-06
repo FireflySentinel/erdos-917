@@ -4,7 +4,7 @@ import Mathlib.Combinatorics.SimpleGraph.Subgraph
 namespace Erdos917
 open SimpleGraph ModuleVertex
 
-/-- The manuscript's convention: chromatic number k, and every proper subgraph
+/-- Full criticality: chromatic number k, and every proper subgraph
 (including subgraphs missing vertices) is (k-1)-colorable. -/
 def IsCritical {V : Type*} (G : SimpleGraph V) (k : ℕ) : Prop :=
   G.chromaticNumber = k ∧ ∀ Q : G.Subgraph,Q ≠ ⊤ → Q.coe.Colorable (k-1)
