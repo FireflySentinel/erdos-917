@@ -56,12 +56,12 @@ Erd\H{o}s \cite[p.~28]{Erdos1969} conjectured that, for fixed \(k\ge6\)
 \begin{equation}\label{eq:conjecture}
  f_k(n)\sim\frac12\left(1-\frac1{\lfloor k/3\rfloor}\right)n^2.
 \end{equation}
-Dirac \cite{Dirac1952} gave the \(k=6\) construction obtained by
+Dirac \cite[p.~90]{Dirac1952} gave the \(k=6\) construction obtained by
 joining two odd cycles of equal order, and Erd\H{o}s observed that it
 generalizes when \(3\mid k\), giving the coefficient in
 \eqref{eq:conjecture}. When \(3\nmid k\), Toft's constructions
 \cite{Toft1970} give larger coefficients. For background on dense
-critical graphs, see Jensen and Toft \cite[Section~5.1]{JensenToft}
+critical graphs, see Jensen and Toft \cite[Section~5.1, pp.~97--98]{JensenToft}
 and Jensen \cite{Jensen2002}. Luo, Ma, and Yang \cite{LMY} noted in 2023
 that no constructions improving Toft's asymptotic constants had been
 found since 1970. We show that the coefficient in \eqref{eq:conjecture}
@@ -195,13 +195,14 @@ and
 
 \begin{proof}
 \emph{Construction.}
-Set \(\ell=2v\) and take
+Set \(\ell=2v\) and take the joins of a clique and an odd cycle in
+\cite[p.~90]{Dirac1952}:
 \[
  S=K_8\vee C_{h-8},\qquad T=K_7\vee C_{\ell-7}.
 \]
 Both cycles are odd and have length at least three. Since the join of
-a \(p\)-critical and a \(q\)-critical graph is \((p+q)\)-critical
-\cite{Dirac1952}, \(S\) is 11-critical and \(T\) is 10-critical.
+a \(p\)-critical and a \(q\)-critical graph is \((p+q)\)-critical,
+\(S\) is 11-critical and \(T\) is 10-critical.
 (Deleting a vertex or an edge within one factor saves a color there;
 if a joining edge \(xy\) is deleted, give \(x\) and \(y\) singleton
 colors in their respective factors and identify those colors.)
@@ -474,6 +475,7 @@ Dense critical and vertex-critical graphs,
 T.~R. Jensen and B.~Toft,
 \emph{Graph Coloring Problems},
 Wiley-Interscience, New York, 1995.
+\href{https://doi.org/10.1002/9781118032497.ch5}{Chapter~5: Critical graphs}.
 
 \bibitem{LMY}
 C.~Luo, J.~Ma, and T.~Yang,
