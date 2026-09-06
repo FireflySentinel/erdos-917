@@ -1,47 +1,46 @@
-# Erdős Problem #917 — twelve-critical graphs with $(2/5+o(1))n^2$ edges
+# Erdős Problem #917: twelve-critical graphs with $(2/5+o(1))n^2$ edges
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22348353.svg)](https://doi.org/10.5281/zenodo.22348353)
 
-Preprint disproving the **general asymptotic conjecture** in
-[Erdős Problem #917](https://www.erdosproblems.com/917) at $k=12$ — the first case in
-the residue class $3\mid k$, which earlier counterexamples did not reach.
+Preprint disproving the general asymptotic conjecture in
+[Erdős Problem #917](https://www.erdosproblems.com/917) at $k=12$, the first case in the
+residue class $3\mid k$, which earlier counterexamples did not reach.
 
-**Qiyuan Gu**, University of Chicago — <phoenix1203@uchicago.edu>
+**Qiyuan Gu**, University of Chicago, <phoenix1203@uchicago.edu>
+
+Comments and corrections: email or issue.
 
 ## Status
 
 | | |
 |---|---|
-| Manuscript | v3, 6 pages, 5 September 2026 — [`PROOF.pdf`](PROOF.pdf), [`PROOF.tex`](PROOF.tex) |
+| Manuscript | v3, 6 pages, 5 September 2026: [`PROOF.pdf`](PROOF.pdf), [`PROOF.tex`](PROOF.tex) |
 | DOI | [10.5281/zenodo.22348353](https://doi.org/10.5281/zenodo.22348353) (always the latest version; this version is [10.5281/zenodo.22352283](https://doi.org/10.5281/zenodo.22352283)) |
-| erdosproblems.com | listed **open** as of 5 September 2026, no proof claims submitted |
+| erdosproblems.com | listed open as of 5 September 2026; [proof claim posted](https://www.erdosproblems.com/forum/thread/917/proof-claims) |
 | Refereeing | not yet refereed |
 
-## What this does and does not settle
+## What this settles
 
 Erdős Problem #917 asks three separate things about $f_k(n)$, the largest number of edges
 in a $k$-critical graph on $n$ vertices:
 
 | | question | status |
 |---|---|---|
-| (i) | $f_k(n)\gg_k n^2$ for $k\ge 4$? | **yes** — Toft (1970) |
-| (ii) | $f_6(n)\sim n^2/4$? | **open — this paper says nothing about it** |
-| (iii) | $f_k(n)\sim\frac12\left(1-\frac{1}{\lfloor k/3\rfloor}\right)n^2$ for $k\ge 6$? | already known to fail for $3\nmid k$; **refuted here for $k=12$** |
+| (i) | $f_k(n)\gg_k n^2$ for $k\ge 4$? | yes, Toft (1970) |
+| (ii) | $f_6(n)\sim n^2/4$? | open; not addressed here |
+| (iii) | $f_k(n)\sim\frac12\left(1-\frac{1}{\lfloor k/3\rfloor}\right)n^2$ for $k\ge 6$? | already known to fail for $3\nmid k$; refuted here for $k=12$ |
 
-This paper addresses **(iii) only**, at $k=12$:
+This paper addresses (iii), at $k=12$:
 
 $$\text{conjectured coefficient } \tfrac12\left(1-\tfrac14\right)=\tfrac38,
 \qquad\text{construction}\longrightarrow\tfrac25>\tfrac38 .$$
 
-Formula (iii) was already known to fail for $k\not\equiv 0\pmod 3$; the case $3\mid k$ —
-where joining $k/3$ equal odd cycles attains the conjectured coefficient exactly — was the
-one still standing. $k=12$ falls in that case.
+The case $3\mid k$, where joining $k/3$ equal odd cycles attains the conjectured
+coefficient exactly, was the one still standing, and $k=12$ falls in it.
 
-Note that (ii) is the $k=6$ *instance* of (iii), since $\frac12(1-\frac12)=\frac14$. A
+Question (ii) is the $k=6$ instance of (iii), since $\frac12(1-\frac12)=\frac14$. A
 counterexample at $k=12$ refutes (iii) as a general formula but leaves that instance
-untouched.
-
-> **The middle question, $f_6(n)\sim n^2/4$, is neither proved nor disproved here.**
+untouched, so whether $f_6(n)\sim n^2/4$ is neither proved nor disproved here.
 
 The coefficient $2/5$ sits below the known upper bounds for $k=12$, which stand above
 $0.449$ (Luo, Ma and Yang, [arXiv:2301.01656](https://arxiv.org/abs/2301.01656)).
@@ -60,12 +59,12 @@ type of edge, so no critical subgraph has to be extracted.
 
 ## Method
 
-The construction combines $K_5$-**saturated** graphs of sublinear maximum degree — the
-explicit family of Alon, Erdős, Holzman and Krivelevich, with
-$v=13Q^2+12Q$, $\Delta=22Q-3$ — with a **coloring module of Pegden**. Given a
-$K_5$-saturated $H$ with $\Delta(H)<|H|-1$ and an odd $h\ge 11$ with $|H|>40h\Delta(H)$,
-the assembly yields a twelve-critical graph on $N=5(a+h+2v)$ vertices with $a=2hv$ and
-$e\ge 10a^2(1-\Delta/v)$. Taking $Q=h^2$ with $h=3^s$ drives $e/N^2\to 2/5$.
+The construction combines $K_5$-saturated graphs of sublinear maximum degree, the explicit
+family of Alon, Erdős, Holzman and Krivelevich with $v=13Q^2+12Q$ and $\Delta=22Q-3$, with
+a coloring module of Pegden. Given a $K_5$-saturated $H$ with $\Delta(H)<|H|-1$ and an odd
+$h\ge 11$ with $|H|>40h\Delta(H)$, the assembly yields a twelve-critical graph on
+$N=5(a+h+2v)$ vertices with $a=2hv$ and $e\ge 10a^2(1-\Delta/v)$. Taking $Q=h^2$ with
+$h=3^s$ drives $e/N^2\to 2/5$.
 
 ## Use of generative AI
 
