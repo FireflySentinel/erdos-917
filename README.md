@@ -11,7 +11,7 @@ residue class $3\mid k$, which earlier counterexamples did not reach.
 [Preprint PDF](PROOF.pdf) · [LaTeX source](PROOF.tex) ·
 [Lean formalization](Erdos917/Main.lean) · [Build instructions](FORMALIZATION.md)
 
-Published version: [v3](https://doi.org/10.5281/zenodo.22352283), 5 September 2026.
+Published version: [v4](https://doi.org/10.5281/zenodo.22442528), 6 September 2026, manuscript and Lean sources.
 
 Comments and corrections: [email](mailto:phoenix1203@uchicago.edu) or
 [issue](https://github.com/FireflySentinel/erdos-917/issues).
