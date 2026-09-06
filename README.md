@@ -6,18 +6,15 @@ Preprint disproving the general asymptotic conjecture in
 [Erdős Problem #917](https://www.erdosproblems.com/917) at $k=12$, the first case in the
 residue class $3\mid k$, which earlier counterexamples did not reach.
 
-**Qiyuan Gu**, University of Chicago, <phoenix1203@uchicago.edu>
+**Qiyuan Gu**, University of Chicago
 
-Comments and corrections: email or issue.
+[Preprint PDF](PROOF.pdf) · [LaTeX source](PROOF.tex) ·
+[Lean formalization](Erdos917/Main.lean) · [Build instructions](FORMALIZATION.md)
 
-## Status
+Published version: [v3](https://doi.org/10.5281/zenodo.22352283), 5 September 2026.
 
-| | |
-|---|---|
-| Manuscript | v3, 6 pages, 5 September 2026: [`PROOF.pdf`](PROOF.pdf), [`PROOF.tex`](PROOF.tex) |
-| DOI | [10.5281/zenodo.22348353](https://doi.org/10.5281/zenodo.22348353) (always the latest version; this version is [10.5281/zenodo.22352283](https://doi.org/10.5281/zenodo.22352283)) |
-| erdosproblems.com | listed open as of 5 September 2026; [proof claim posted](https://www.erdosproblems.com/forum/thread/917/proof-claims) |
-| Refereeing | not yet refereed |
+Comments and corrections: [email](mailto:phoenix1203@uchicago.edu) or
+[issue](https://github.com/FireflySentinel/erdos-917/issues).
 
 ## What this settles
 
