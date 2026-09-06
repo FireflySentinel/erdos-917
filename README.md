@@ -2,7 +2,7 @@
 
 Preprint disproving the general asymptotic conjecture in
 [Erdős Problem #917](https://www.erdosproblems.com/917) at $k=12$, the first case in the
-residue class $3\mid k$, which earlier counterexamples did not reach.
+residue class $3\mid k$.
 
 ## Build and check
 
