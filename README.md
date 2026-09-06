@@ -1,6 +1,7 @@
 # Erdős Problem #917: twelve-critical graphs with $(2/5+o(1))n^2$ edges
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22348353.svg)](https://doi.org/10.5281/zenodo.22348353)
+[![Lean](https://github.com/FireflySentinel/erdos-917/actions/workflows/lean.yml/badge.svg?branch=main)](https://github.com/FireflySentinel/erdos-917/actions/workflows/lean.yml)
 
 Preprint disproving the general asymptotic conjecture in
 [Erdős Problem #917](https://www.erdosproblems.com/917) at $k=12$, the first case in the
@@ -10,9 +11,6 @@ residue class $3\mid k$, which earlier counterexamples did not reach.
 
 [Preprint PDF](PROOF.pdf) · [LaTeX source](PROOF.tex) ·
 [Lean formalization](Erdos917/Counterexample.lean) · [Build instructions](FORMALIZATION.md)
-
-Published version: [v5](https://doi.org/10.5281/zenodo.22448854), 6 September 2026, manuscript and Lean sources.
-
 
 ## What this settles
 
@@ -54,8 +52,6 @@ condition that every proper subgraph is $11$-colorable, also proved in Lean.
 The proof exhibits an explicit $11$-coloring after the deletion of each type of edge,
 so no critical subgraph has to be extracted.
 
-## Method
-
 The construction combines $K_5$-saturated graphs of sublinear maximum degree, the explicit
 family of Alon, Erdős, Holzman and Krivelevich with $v=13Q^2+12Q$ and $\Delta=22Q-3$, with
 a coloring module of Pegden. Given a $K_5$-saturated $H$ with $\Delta(H)<|H|-1$ and an odd
@@ -74,8 +70,7 @@ The existence of the AEHK saturated graph family is the external mathematical in
 stated explicitly as [`AEHK.Family`](Erdos917/Counterexample.lean).
 
 [FORMALIZATION.md](FORMALIZATION.md) gives the theorem statements, proof correspondence,
-and build commands. [GitHub Actions](https://github.com/FireflySentinel/erdos-917/actions/workflows/lean.yml)
-runs the build, axiom checks, and kernel replay.
+and build commands.
 
 ## Use of generative AI
 
