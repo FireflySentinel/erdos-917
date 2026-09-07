@@ -1,6 +1,7 @@
 name = "erdos917"
 version = "0.1.0"
 defaultTargets = ["Erdos917"]
+testDriver = "Checks"
 
 [[require]]
 name = "mathlib"
@@ -9,3 +10,8 @@ rev = "v4.33.0"
 
 [[lean_lib]]
 name = "Erdos917"
+
+[[lean_lib]]
+name = "Checks"
+srcDir = "checks"
+roots = ["Check", "FormalConjecturesBridge"]

@@ -83,7 +83,7 @@ $f_k(n) \sim \frac{1}{2}\left(1-\frac{1}{\lfloor k/3\rfloor}\right)n^2$?
 Stiebitz [St87] disproved the conjectured asymptotic for $k\not\equiv0\pmod3$.
 Gu [Gu26] gives a counterexample at $k=12$.
 -/
-@[category research solved, AMS 5, formal_proof using lean4 at "https://github.com/FireflySentinel/erdos-917/blob/88dca6ba68262a9afb81d162c78faed0e3d166b7/Erdos917/AEHK/Family.lean"]
+@[category research solved, AMS 5, formal_proof using lean4 at "https://github.com/FireflySentinel/erdos-917/blob/3a1409ca0f415b4c51287e46f0c8a5406fca0425/checks/FormalConjecturesBridge.lean#L64"]
 theorem erdos_917.parts.iii :
     answer(False) ↔ ∀ k : ℕ, 6 ≤ k →
       Tendsto (fun n : ℕ => (extremalEdges k n : ℝ) / (n : ℝ) ^ 2)
@@ -93,7 +93,7 @@ theorem erdos_917.parts.iii :
 /--
 For every $c<2/5$, the quotient $f_{12}(n)/n^2$ does not converge to $c$ [Gu26].
 -/
-@[category research solved, AMS 5, formal_proof using lean4 at "https://github.com/FireflySentinel/erdos-917/blob/88dca6ba68262a9afb81d162c78faed0e3d166b7/Erdos917/AEHK/Family.lean"]
+@[category research solved, AMS 5, formal_proof using lean4 at "https://github.com/FireflySentinel/erdos-917/blob/3a1409ca0f415b4c51287e46f0c8a5406fca0425/checks/FormalConjecturesBridge.lean#L52"]
 theorem erdos_917.variants.k_twelve :
     ∀ c : ℝ, c < 2 / 5 →
       ¬Tendsto (fun n : ℕ => (extremalEdges 12 n : ℝ) / (n : ℝ) ^ 2)

@@ -11,8 +11,7 @@ With [Elan](https://github.com/leanprover/elan) installed, run from the reposito
 ```sh
 lake exe cache get
 lake build
-lake env lean checks/Check.lean
-lake env lean -DwarningAsError=true checks/FormalConjecturesBridge.lean
+lake test
 LEAN_NUM_THREADS=2 lake env leanchecker Erdos917
 ```
 
