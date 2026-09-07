@@ -23,5 +23,9 @@ jobs:
           use-mathlib-cache: "true"
       - name: Check axiom dependencies
         run: lake env lean checks/Check.lean
+      - name: Check community statement correspondence
+        run: python3 submissions/check_bridge.py
+      - name: Check the community statement proof bridge
+        run: lake env lean -DwarningAsError=true checks/FormalConjecturesBridge.lean
       - name: Replay project declarations through the kernel
         run: lake env leanchecker -v Erdos917

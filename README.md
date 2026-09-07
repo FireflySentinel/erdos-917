@@ -12,6 +12,7 @@ With [Elan](https://github.com/leanprover/elan) installed, run from the reposito
 lake exe cache get
 lake build
 lake env lean checks/Check.lean
+lake env lean -DwarningAsError=true checks/FormalConjecturesBridge.lean
 LEAN_NUM_THREADS=2 lake env leanchecker Erdos917
 ```
 
@@ -46,6 +47,13 @@ the construction to other chromatic numbers; the Lean development covers $k=12$.
 | Lemma 4: finite geometry, clique exclusion, saturation | [Geometry.lean](Erdos917/AEHK/Geometry.lean), [Cliques.lean](Erdos917/AEHK/Cliques.lean), [Triangles.lean](Erdos917/AEHK/Triangles.lean) |
 | Lemma 4: order and exact degrees | [Degrees.lean](Erdos917/AEHK/Degrees.lean) |
 | Theorem 1 and the extremal-function consequence | [Family.lean](Erdos917/AEHK/Family.lean) |
+
+## Community statements
+
+[Prepared contributions](submissions/README.md) include the Formal Conjectures
+statement, a [proved bridge](checks/FormalConjecturesBridge.lean), and the proposed
+Erdős database update. Run `python3 submissions/check_bridge.py` to check that
+the definitions and linked theorem types agree.
 
 ## Use of generative AI
 
