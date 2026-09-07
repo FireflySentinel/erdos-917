@@ -47,12 +47,8 @@ the construction to other chromatic numbers; the Lean development covers $k=12$.
 | Lemma 4: order and exact degrees | [Degrees.lean](Erdos917/AEHK/Degrees.lean) |
 | Theorem 1 and the extremal-function consequence | [Family.lean](Erdos917/AEHK/Family.lean) |
 
-## Community statements
-
-[Prepared contributions](submissions/README.md) include the Formal Conjectures
-statement, a [proved bridge](checks/FormalConjecturesBridge.lean), and the proposed
-Erdős database update. Run `python3 submissions/check_bridge.py` to check that
-the definitions and linked theorem types agree.
+The [proof bridge](checks/FormalConjecturesBridge.lean) derives the corresponding
+problem statements and is included in `lake test`.
 
 ## Use of generative AI
 

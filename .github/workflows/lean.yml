@@ -23,7 +23,5 @@ jobs:
           use-mathlib-cache: "true"
       - name: Check axioms and the community statement proof bridge
         run: lake test
-      - name: Check community statement correspondence
-        run: python3 submissions/check_bridge.py
       - name: Replay project declarations through the kernel
         run: lake env leanchecker -v Erdos917
