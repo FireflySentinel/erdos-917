@@ -3,6 +3,8 @@ import Erdos917.SaturationDefinition
 import Erdos917.Cone
 import Erdos917.OddCycle
 
+/-! Proposition 3: construction of twelve-critical graphs from K5-saturated graphs. -/
+
 namespace Erdos917
 open SimpleGraph
 
@@ -34,14 +36,13 @@ noncomputable def labelEquiv (V : Type*) [Fintype V] (hv : 5 ≤ Fintype.card V)
     TVertex (Fintype.card V) ≃ V × Bool :=
   Fintype.equivOfCardEq (by rw [card_TVertex hv]; simp [mul_comm])
 
-/-- Exactly the five-module graph in Proposition 3, with a chosen labeling bijection. -/
+/-- The five-module graph in Proposition 3, with a chosen labeling bijection. -/
 noncomputable def conversionGraph {V : Type*} [Fintype V] (H : SimpleGraph V)
     (h : ℕ) (hv : 5 ≤ Fintype.card V) :
     SimpleGraph (AssemblyVertex (SVertex h) (TVertex (Fintype.card V))) :=
   assemblyGraph (SGraph h) (TGraph (Fintype.card V)) (blowupGraph H (labelEquiv V hv))
 
-/-- Proposition 3, criticality component, with standard K5-saturation hypotheses.
-No module coloring, odd-cycle criticality, or omitted-edge property is assumed here. -/
+/-- Proposition 3: the conversion graph is twelve-critical. -/
 theorem conversion_twelve_critical {V : Type*} [Fintype V]
     (H : SimpleGraph V) [DecidableRel H.Adj] (h d : ℕ)
     (hv : 5 ≤ Fintype.card V) (hh : 11 ≤ h) (hodd : Odd h)
@@ -69,7 +70,7 @@ theorem conversion_chromaticNumber {V : Type*} [Fintype V]
     (conversionGraph H h hv).chromaticNumber = 12 :=
   (conversion_twelve_critical H h d hv hh hodd hfree hsat hdegree hsmall hsize).1
 
-/-- Every edge of the concrete construction, with no restriction on its type. -/
+/-- Deleting any edge of the conversion graph leaves an eleven-colorable graph. -/
 theorem conversion_delete_edge_colorable {V : Type*} [Fintype V]
     (H : SimpleGraph V) [DecidableRel H.Adj] (h d : ℕ)
     (hv : 5 ≤ Fintype.card V)
@@ -86,7 +87,7 @@ theorem conversion_delete_edge_colorable {V : Type*} [Fintype V]
   have hz := Saturation.scaffold (X := SVertex h) H (labelEquiv V hv) hs hdegree hsmall
   exact Assembly.delete_edge_eleven_colorable _ _ _ (SGraph_critical hh hodd) (TGraph_critical hv) hz u v huv
 
-/-- Cardinality check identifying the formal vertex type with the manuscript construction. -/
+/-- The order of the five-module conversion graph. -/
 lemma conversion_order {V : Type*} [Fintype V] {h : ℕ}
     (hv : 5 ≤ Fintype.card V) (hh : 11 ≤ h) :
     Fintype.card (AssemblyVertex (SVertex h) (TVertex (Fintype.card V))) =

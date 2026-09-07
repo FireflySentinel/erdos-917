@@ -43,7 +43,7 @@ private theorem extremalEdges_twelve (n : ℕ) : extremalEdges 12 n = f12 n := b
   simp only [extremalEdges, f12, criticalGraph_twelve_iff]
   rfl
 
-/-- Bridge for `erdos_917.variants.k_twelve` in the proposed community statement. -/
+/-- The normalized extremal edge count at $k=12$ cannot converge below $2/5$. -/
 theorem erdos_917.variants.k_twelve :
     ∀ c : ℝ, c < 2 / 5 →
       ¬Tendsto (fun n : ℕ => (extremalEdges 12 n : ℝ) / (n : ℝ) ^ 2)
@@ -55,7 +55,7 @@ theorem erdos_917.variants.k_twelve :
 #guard_msgs (whitespace := lax) in
 #print axioms Erdos917.erdos_917.variants.k_twelve
 
-/-- Bridge for `erdos_917.parts.iii` in the proposed community statement. -/
+/-- The proposed asymptotic formula fails at $k=12$, refuting its universal form. -/
 theorem erdos_917.parts.iii :
     False ↔ ∀ k : ℕ, 6 ≤ k →
       Tendsto (fun n : ℕ => (extremalEdges k n : ℝ) / (n : ℝ) ^ 2)

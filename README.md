@@ -41,7 +41,7 @@ the construction to other chromatic numbers; the Lean development covers $k=12$.
 |---|---|
 | Lemma 2: active colors, prescribed singleton, module-edge deletions | [Module.lean](Erdos917/Module.lean) |
 | Eleven-color impossibility | [Assembly.lean](Erdos917/Assembly.lean), `not_eleven_colorable` |
-| Proposition 3, exact edge formula and lower bound | [EdgeCount.lean](Erdos917/EdgeCount.lean), `conversion_edgeCount` |
+| Proposition 3: criticality and edge bounds | [Conversion.lean](Erdos917/Conversion.lean), [EdgeCount.lean](Erdos917/EdgeCount.lean) |
 | Density limit from the edge formula | [Density.lean](Erdos917/Density.lean), `density_limit_of_parameters` |
 | Lemma 4: finite geometry, clique exclusion, saturation | [Geometry.lean](Erdos917/AEHK/Geometry.lean), [Cliques.lean](Erdos917/AEHK/Cliques.lean), [Triangles.lean](Erdos917/AEHK/Triangles.lean) |
 | Lemma 4: order and exact degrees | [Degrees.lean](Erdos917/AEHK/Degrees.lean) |

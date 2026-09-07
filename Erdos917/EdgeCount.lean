@@ -1,4 +1,4 @@
-import Erdos917.Main
+import Erdos917.Conversion
 import Mathlib.Combinatorics.SimpleGraph.DegreeSum
 
 set_option backward.isDefEq.respectTransparency false
