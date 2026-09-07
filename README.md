@@ -15,9 +15,6 @@ lake env lean checks/Check.lean
 LEAN_NUM_THREADS=2 lake env leanchecker -v Erdos917
 ```
 
-`leanchecker Erdos917` checks every compiled module with that name prefix;
-`-v` lists the modules in the CI log.
-
 ## Exact statement
 
 The main theorem is
@@ -29,22 +26,14 @@ Its statement uses three project-specific definitions:
 - [`IsEdgeCritical`](Erdos917/Extremal.lean): criticality under Problem 917's edge-deletion convention.
 - [`f12`](Erdos917/Extremal.lean): the maximum edge count of a twelve-critical graph on $n$ vertices under this convention, or $0$ when the class is empty.
 
-The proof is checked by the Lean kernel;
-[`checks/Check.lean`](checks/Check.lean) verifies that its axiom dependencies are
+[`checks/Check.lean`](checks/Check.lean) verifies that the axiom dependencies are
 `propext`, `Classical.choice`, and `Quot.sound`.
 [`Erdos917.not_density_three_eighths`](Erdos917/AEHK/Family.lean)
 gives the particular case $c = 3/8$ proposed in Problem 917.
 
-The following theorems connect the proof with the manuscript.
-[`Erdos917.conversion_twelve_critical`](Erdos917/Main.lean) proves that the
-five-module construction is twelve-critical in the proper-subgraph sense.
-[`Erdos917.AEHK.canonical_counterexample_density`](Erdos917/AEHK/Family.lean)
-gives its edge-density limit $e/N^2\to2/5$.
-The AEHK family is constructed over finite fields;
-[`exists_prime_power_model`](Erdos917/AEHK/Family.lean) proves Lemma 4 for every
-prime power $Q \ge 4$, including saturation and the exact maximum degree.
-The manuscript's final remark extends the construction to other chromatic numbers;
-the Lean development covers $k=12$.
+The AEHK family is constructed in Lean over finite fields, so the main theorem
+carries no external mathematical hypothesis. The manuscript's final remark extends
+the construction to other chromatic numbers; the Lean development covers $k=12$.
 
 ## Proof correspondence
 
