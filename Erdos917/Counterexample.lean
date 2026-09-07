@@ -11,7 +11,7 @@ namespace AEHK
 (Section 4), with k = 5 and one added vertex per truncated-plane line.
 This gives 12Q(Q+1) core vertices and Q² line vertices. Their respective degrees
 are 22Q-3 and 12(Q+1), so the latter is at most the former for Q ≥ 4.
-Existence of this family is the external input. -/
+`AEHK.canonicalFamily` constructs such a family in `AEHK/Family.lean`. -/
 structure Family where
   graph : (s : ℕ) → SimpleGraph (Fin (v s))
   free : ∀ s, (graph s).CliqueFree 5
@@ -65,7 +65,7 @@ theorem counterexample_order_tendsto :
   rw [counterexample_order]
   omega
 
-/-- Theorem 1: edge density tends to 2/5, conditional only on the stated AEHK family. -/
+/-- Theorem 1: edge density tends to 2/5 for any family satisfying the specification. -/
 theorem counterexample_density (F : Family) :
     Tendsto (fun s => (edgeCount (counterexample F s) : ℝ) /
       (Fintype.card (Vertex s) : ℝ) ^ 2) atTop (𝓝 (2 / 5 : ℝ)) := by

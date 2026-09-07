@@ -342,14 +342,91 @@ graph \(H_Q\) with
 \end{lemma}
 
 \begin{proof}
-In Example 2 of \cite{AEHK}, set \(k=5\) and give each of the
-\(Q^2\) additional independent sets one vertex. The core has
-\(12Q(Q+1)\) vertices. A core vertex has \(3(3Q-1)\) neighbors
-in its level, \(12Q\) in the other levels, and \(Q\) among the
-additional vertices, so its degree is \(22Q-3\). An additional
-vertex has degree \(12(Q+1)\), which is smaller for \(Q\ge4\).
-Thus \eqref{eq:H-parameters} holds; saturation is part of the cited
-construction.
+We give the verification of Example 2 in \cite{AEHK} for \(k=5\).
+Let \(F\) be a field of order \(Q\). The levels are
+\(F\cup\{\infty\}\), given any linear order, and the places in
+each level are indexed by \(\mathbb Z/Q\mathbb Z\) through a fixed
+bijection with \(F\). For each \((a,b)\in F^2\), form a line
+\(L_{a,b}\) whose point in finite level \(u\) has field coordinate
+\(au+b\), and whose point in level \(\infty\) has coordinate \(a\).
+Every line has one point in each level, every point lies on \(Q\)
+lines, and any two distinct lines meet: if their slopes agree they
+meet in level \(\infty\); otherwise solve
+\((a-a')u=b'-b\).
+
+A core vertex is a quadruple \((i,j,t,c)\), where \(i\) is its
+level, \(j\in\mathbb Z/Q\mathbb Z\) its place,
+\(t\in\mathbb Z/3\mathbb Z\) its type, and
+\(c\in\{0,1,2,3\}\) its copy. In one level, two core vertices
+are adjacent precisely when their copies differ and their
+\((j,t)\) pairs differ. Between levels \(i<i'\), adjacency means
+\[
+ t'=t+1,\qquad j'\in\{j+1,j+2,j+3\}.
+\]
+Finally, add one vertex for each line, adjacent to all twelve core
+vertices at each of its points. The line vertices are independent.
+All additions in the place coordinate are modulo \(Q\), irrespective
+of the characteristic of \(F\).
+
+\emph{Excluding \(K_5\).}
+A triangle of core vertices cannot occupy three levels: its edges
+would require both \(t''=t+1\) and \(t''=t+2\) modulo three.
+Thus every core clique occupies at most two levels. Within one
+level it has at most four vertices, since copies must differ.
+If it meets two levels, all vertices in each level have the same
+type, so their places and copies are distinct. The three successors
+of a place form a proper cyclic interval, since \(Q\ge4\), and
+different places give different successor triples. The same is true
+of predecessor triples. Hence two distinct places have at most two
+common successors or predecessors. A clique meeting two levels
+therefore cannot have three vertices in one level and two in the
+other, nor four in either level.
+
+The neighborhood of a line vertex is \(K_4\)-free. Indeed, a clique
+in that neighborhood occupying one level has at most three vertices,
+as its places agree and its types must differ. If it occupies two
+levels, the preceding same-type observation permits at most one
+vertex in each. Since line vertices are independent, this also
+excludes every \(K_5\) containing a line vertex.
+
+\emph{Saturating every missing edge.}
+It suffices to exhibit a triangle in the common neighborhood of
+any two distinct nonadjacent vertices \(x,y\).
+If both are line vertices, take their intersection point and three
+core vertices there with distinct types and copies.
+If \(x\) is a core vertex and \(y\) a nonincident line, take the
+point of \(y\) in the level of \(x\). Its place differs from that
+of \(x\); use all three types there, in the three copies other
+than the copy of \(x\).
+
+Suppose next that both vertices are in the same level. If their
+copies agree, choose a place different from both of their places,
+and use its three types in the three other copies. Such a place
+exists because \(Q\ge4\). If their copies differ, nonadjacency
+means that their places and types agree. Choose a line through
+that point and two core vertices there using the other two types
+and the other two copies. These three vertices give the triangle.
+
+Finally, suppose \(x\) lies below \(y=(i',j',t',c')\).
+In the level of \(x\), take the three places
+\(j'-1,j'-2,j'-3\), all of type \(t'-1\), assigning them the
+three copies different from the copy of \(x\). They form a triangle
+and are adjacent to \(y\). None has the same place and type as
+\(x\), since that would make \(x\) adjacent to \(y\).
+Thus they are also adjacent to \(x\). This exhausts the missing edges.
+
+\emph{Order and maximum degree.}
+There are \(12Q(Q+1)\) core vertices and \(Q^2\) line vertices.
+A core vertex has \(3(3Q-1)\) neighbors in its level,
+\(12Q\) in the other levels, and \(Q\) line neighbors.
+Its degree is therefore \(22Q-3\). A line vertex has degree
+\(12(Q+1)<22Q-3\) for \(Q\ge4\), proving
+\eqref{eq:H-parameters}. In particular,
+\[
+ \frac{\Delta(H_Q)}{|V(H_Q)|}
+ \le \frac{22}{13Q}\longrightarrow0
+ \qquad(Q\longrightarrow\infty).
+\]
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
@@ -421,20 +498,21 @@ a \(k\)-critical sequence with density \((k-5)/(2(k-3))\).
 \section*{Lean formalization}
 
 Lemma~\ref{lem:module}, Proposition~\ref{prop:conversion} (criticality,
-order, and the exact edge count \eqref{eq:exact-edges}), the parameter
-choices, and the limit \(e(G_s)/|V(G_s)|^2\to2/5\) have been formalized
-in Lean~4 with Mathlib. The formalization also defines \(f_{12}\) under
-the edge-deletion convention and proves that \(f_{12}(n)/n^2\) has no
-limit below \(2/5\). The only unformalized input to these results is
-the existence of the graphs \(H_Q\) of Lemma~\ref{lem:saturation},
-stated as an explicit hypothesis. Source and build instructions:
+order, and the exact edge count \eqref{eq:exact-edges}), and
+Lemma~\ref{lem:saturation} have been formalized in Lean~4 with Mathlib.
+The finite fields are constructed using Mathlib's \texttt{GaloisField}.
+The formalization proves the limit \(e(G_s)/|V(G_s)|^2\to2/5\),
+defines \(f_{12}\) under the edge-deletion convention, and proves
+that \(f_{12}(n)/n^2\) has no limit below \(2/5\), with no external
+mathematical hypothesis. Source and build instructions:
 \url{https://github.com/FireflySentinel/erdos-917}.
 
 \section*{Use of generative AI}
 
 The proofs and the first draft were generated with GPT-6 Astra;
 GPT-5.6 Sol and Claude Opus 5 were used for editorial review;
-the Lean formalization was developed with OpenAI Codex (GPT-6).
+the explicit verification of the AEHK construction and the Lean formalization
+were developed with OpenAI Codex (GPT-6).
 The author checked the arguments and is responsible for the content.
 
 \begin{thebibliography}{9}

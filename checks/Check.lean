@@ -75,3 +75,39 @@ import Erdos917
 /-- info: 'Erdos917.AEHK.f12_not_density_below_two_fifths' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Erdos917.AEHK.f12_not_density_below_two_fifths
+
+/-- info: 'Erdos917.AEHK.exists_prime_power_model' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.AEHK.exists_prime_power_model
+
+/-- info: 'Erdos917.AEHK.planeGraph_cliqueFree' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.AEHK.planeGraph_cliqueFree
+
+/-- info: 'Erdos917.AEHK.planeGraph_commonTriangle' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.AEHK.planeGraph_commonTriangle
+
+/-- info: 'Erdos917.AEHK.planeGraph_maxDegree' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.AEHK.planeGraph_maxDegree
+
+/-- info: 'Erdos917.AEHK.canonicalFamily' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.AEHK.canonicalFamily
+
+/-- info: 'Erdos917.AEHK.canonical_counterexample_critical' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.AEHK.canonical_counterexample_critical
+
+/-- info: 'Erdos917.AEHK.canonical_counterexample_density' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.AEHK.canonical_counterexample_density
+
+/-- info: 'Erdos917.not_density_three_eighths' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.not_density_three_eighths
+
+/-- info: 'Erdos917.f12_not_density_below_two_fifths' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.f12_not_density_below_two_fifths
