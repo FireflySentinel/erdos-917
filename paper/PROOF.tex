@@ -95,6 +95,11 @@ so the asymptotic density of this construction is at most \(2/5\).
 For comparison, the upper bound of Luo, Ma, and Yang \cite[Theorem~1.1]{LMY}
 has coefficient \(9/20-1/4356\approx0.44977\) for \(f_{12}\).
 
+In \cite[Example~2]{AEHK}, the \(K_k\)-free property of the core is
+proved, while the saturation check is omitted.
+Lemma~\ref{lem:saturation} gives a complete verification for \(k=5\),
+also formalized in Lean.
+
 \section{A coloring module}
 \label{sec:module}
 
@@ -497,6 +502,8 @@ a \(k\)-critical sequence with density \((k-5)/(2(k-3))\).
 
 \section*{Lean formalization}
 
+The Lean development covers \(k=12\); the preceding Remark on other
+chromatic numbers is not included.
 Lemma~\ref{lem:module}, Proposition~\ref{prop:conversion} (criticality,
 order, and the exact edge count \eqref{eq:exact-edges}), and
 Lemma~\ref{lem:saturation} have been formalized in Lean~4 with Mathlib.
@@ -504,7 +511,11 @@ The finite fields are constructed using Mathlib's \texttt{GaloisField}.
 The formalization proves the limit \(e(G_s)/|V(G_s)|^2\to2/5\),
 defines \(f_{12}\) under the edge-deletion convention, and proves
 that \(f_{12}(n)/n^2\) has no limit below \(2/5\), with no external
-mathematical hypothesis. Source and build instructions:
+mathematical hypothesis. The corresponding declarations are
+\nolinkurl{Erdos917.f12_not_density_below_two_fifths} and
+\nolinkurl{Erdos917.not_density_three_eighths}, the latter stating the
+failure of the proposed limit \(3/8\).
+Source and build instructions:
 \url{https://github.com/FireflySentinel/erdos-917}.
 
 \section*{Use of generative AI}
