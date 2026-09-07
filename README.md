@@ -12,7 +12,7 @@ With [Elan](https://github.com/leanprover/elan) installed, run from the reposito
 lake exe cache get
 lake build
 lake env lean checks/Check.lean
-LEAN_NUM_THREADS=2 lake env leanchecker -v Erdos917
+LEAN_NUM_THREADS=2 lake env leanchecker Erdos917
 ```
 
 ## Exact statement
