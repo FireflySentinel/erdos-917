@@ -1,10 +1,10 @@
 # Erdős Problem #917: twelve-critical graphs with $(2/5+o(1))n^2$ edges
 
-Lean 4 formalization disproving the general asymptotic conjecture in
-[Erdős Problem #917](https://www.erdosproblems.com/917) at $k=12$, the first case in the
-residue class $3\mid k$. The AEHK family is constructed in Lean over finite fields, so
-[`Erdos917.f12_not_density_below_two_fifths`](Erdos917/AEHK/Family.lean) carries no
-external mathematical hypothesis.
+The AEHK family is constructed in Lean over finite fields.
+[exists_prime_power_model](Erdos917/AEHK/Family.lean) proves Lemma 4 for every
+prime power $Q\ge4$, including saturation and the exact maximum degree.
+The Lean development formalizes the $k=12$ result; the manuscript also records
+an extension to other chromatic numbers.
 
 ## Build and check
 
