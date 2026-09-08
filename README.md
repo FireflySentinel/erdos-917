@@ -3,8 +3,8 @@
 The AEHK family is constructed in Lean over finite fields.
 [exists_prime_power_model](Erdos917/AEHK/Family.lean) proves Lemma 4 for every
 prime power $Q\ge4$, including saturation and the exact maximum degree.
-The Lean development formalizes the $k=12$ result; the manuscript also records
-an extension to other chromatic numbers.
+The Lean development formalizes the $k=12$ case of Theorem 1. The general
+result for other chromatic numbers is not formalized.
 
 ## Build and check
 
@@ -21,13 +21,13 @@ LEAN_NUM_THREADS=2 lake env leanchecker Erdos917
 
 | Manuscript argument | Lean source |
 |---|---|
-| Lemma 2: active colors, prescribed singleton, module-edge deletions | [Module.lean](Erdos917/Module.lean) |
+| Lemma 2 at $r=11$: active colors, prescribed singleton, module-edge deletions | [Module.lean](Erdos917/Module.lean) |
 | Eleven-color impossibility | [Assembly.lean](Erdos917/Assembly.lean), `not_eleven_colorable` |
-| Proposition 3: criticality and edge bounds | [Conversion.lean](Erdos917/Conversion.lean), [EdgeCount.lean](Erdos917/EdgeCount.lean) |
+| Proposition 3 at $t=5$: criticality and edge bounds | [Conversion.lean](Erdos917/Conversion.lean), [EdgeCount.lean](Erdos917/EdgeCount.lean) |
 | Density limit from the edge formula | [Density.lean](Erdos917/Density.lean), `density_limit_of_parameters` |
 | Lemma 4: finite geometry, clique exclusion, saturation | [Geometry.lean](Erdos917/AEHK/Geometry.lean), [Cliques.lean](Erdos917/AEHK/Cliques.lean), [Triangles.lean](Erdos917/AEHK/Triangles.lean) |
 | Lemma 4: order and exact degrees | [Degrees.lean](Erdos917/AEHK/Degrees.lean) |
-| Theorem 1 and the extremal-function consequence | [Family.lean](Erdos917/AEHK/Family.lean) |
+| Theorem 1 at $k=12$ and the extremal-function consequence | [Family.lean](Erdos917/AEHK/Family.lean) |
 
 The [proof bridge](checks/FormalConjecturesBridge.lean) derives the corresponding
 problem statements and is included in `lake test`.
