@@ -1,8 +1,10 @@
 # Erdős Problem #917: twelve-critical graphs with $(2/5+o(1))n^2$ edges
 
-Preprint disproving the general asymptotic conjecture in
+Lean 4 formalization disproving the general asymptotic conjecture in
 [Erdős Problem #917](https://www.erdosproblems.com/917) at $k=12$, the first case in the
-residue class $3\mid k$.
+residue class $3\mid k$. The AEHK family is constructed in Lean over finite fields, so
+[`Erdos917.f12_not_density_below_two_fifths`](Erdos917/AEHK/Family.lean) carries no
+external mathematical hypothesis.
 
 ## Build and check
 
@@ -14,26 +16,6 @@ lake build
 lake test
 LEAN_NUM_THREADS=2 lake env leanchecker Erdos917
 ```
-
-## Exact statement
-
-The main theorem is
-[`Erdos917.f12_not_density_below_two_fifths`](Erdos917/AEHK/Family.lean):
-for every real $c < 2/5$, $f_{12}(n)/n^2$ does not converge to $c$.
-Its statement uses three project-specific definitions:
-
-- [`edgeCount`](Erdos917/EdgeCount.lean): the number of unordered edges.
-- [`IsEdgeCritical`](Erdos917/Extremal.lean): criticality under Problem 917's edge-deletion convention.
-- [`f12`](Erdos917/Extremal.lean): the maximum edge count of a twelve-critical graph on $n$ vertices under this convention, or $0$ when the class is empty.
-
-[`checks/Check.lean`](checks/Check.lean) verifies that the axiom dependencies are
-`propext`, `Classical.choice`, and `Quot.sound`.
-[`Erdos917.not_density_three_eighths`](Erdos917/AEHK/Family.lean)
-gives the particular case $c = 3/8$ proposed in Problem 917.
-
-The AEHK family is constructed in Lean over finite fields, so the main theorem
-carries no external mathematical hypothesis. The manuscript's final remark extends
-the construction to other chromatic numbers; the Lean development covers $k=12$.
 
 ## Proof correspondence
 
@@ -49,11 +31,12 @@ the construction to other chromatic numbers; the Lean development covers $k=12$.
 
 The [proof bridge](checks/FormalConjecturesBridge.lean) derives the corresponding
 problem statements and is included in `lake test`.
+[`checks/Check.lean`](checks/Check.lean) guards the axiom dependencies to `propext`,
+`Classical.choice`, and `Quot.sound`.
 
 ## Use of generative AI
 
-The proofs and the first draft were generated with GPT-6 Astra;
-GPT-5.6 Sol and Claude Opus 5 were used for editorial review;
-the explicit verification of the AEHK construction and the Lean formalization
-were developed with OpenAI Codex (GPT-6).
-The author checked the arguments and is responsible for the content.
+GPT-6 Astra proposed the argument and drafted the manuscript.
+GPT-5.6 Sol and Claude Opus 5 were used for editorial review.
+The AEHK verification and the Lean formalization were generated with OpenAI Codex (GPT-6).
+The author completed the manuscript and is responsible for the content.
