@@ -36,7 +36,6 @@ problem statements and is included in `lake test`.
 
 ## Use of generative AI
 
-GPT-6 Astra proposed the argument and drafted the manuscript.
+GPT-6 Astra proposed the argument and generated the Lean formalization.
 GPT-5.6 Sol and Claude Opus 5 were used for editorial review.
-The AEHK verification and the Lean formalization were generated with OpenAI Codex (GPT-6).
 The author completed the manuscript and is responsible for the content.
