@@ -5,7 +5,6 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[margin=1in]{geometry}
 \usepackage{microtype}
-\usepackage{needspace}
 \usepackage[hidelinks]{hyperref}
 \hypersetup{
   pdftitle={Dense critical graphs from saturated graphs},
@@ -16,8 +15,6 @@
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
 \numberwithin{equation}{section}
 \newcommand{\col}{\operatorname{col}}
 
@@ -61,7 +58,7 @@ for graphs without isolated vertices this is equivalent to requiring
 only that deleting any edge lowers the chromatic number.
 Write \(e(G)=|E(G)|\), and let \(f_k(n)\) be the maximum number
 of edges of a \(k\)-critical graph on \(n\) vertices (in the
-edge-deletion sense), or \(0\) if none exists.
+edge-deletion sense).
 Erd\H{o}s \cite[p.~28]{Erdos1969} conjectured that, for fixed \(k\ge6\),
 \begin{equation}\label{eq:conjecture}
  f_k(n)\sim\frac12\left(1-\frac1{\lfloor k/3\rfloor}\right)n^2.
@@ -77,7 +74,8 @@ coefficients. For background on dense critical graphs, see Jensen
 and Toft \cite[Section~5.1, pp.~97--98]{JensenToft} and Jensen
 \cite{Jensen2002}. Luo, Ma, and Yang \cite{LMY} noted that no
 constructions improving Toft's asymptotic constants had been found
-since 1970. We give the following construction.
+since 1970; their Theorem~1.1 gives upper bounds on \(f_k(n)\).
+We give the following construction.
 
 \begin{theorem}\label{thm:main}
 For every integer \(k\ge8\), there is a sequence of \(k\)-critical
@@ -106,55 +104,35 @@ Toft's coefficients \cite{Toft1970}, in the notation of
 
 \begin{corollary}\label{cor:general}
 For every \(k\ge8\), \(k\ne9\), the density \(c_k\) exceeds
-Toft's coefficient \(b_k\), and \eqref{eq:conjecture} fails.
-In particular, \eqref{eq:conjecture} fails for every multiple
-of three at least twelve.
-For \(k=9\), the density \(c_9=1/3\) equals both coefficients.
+Toft's coefficient \(b_k\). Moreover, for \(3\mid k\) and
+\(k\ge12\), \eqref{eq:conjecture} fails.
+For \(k=9\), all three coefficients equal \(1/3\).
 \end{corollary}
 
 \begin{proof}
 Theorem~\ref{thm:main} and \(f_k(|V(G_s)|)\ge e(G_s)\) give
 \(\limsup_{n\to\infty}f_k(n)/n^2\ge c_k\).
-For even \(k\ge8\),
-\[
- 2\lfloor k/3\rfloor<k-2,\qquad k>6-\delta_k,
-\]
-which imply \(c_k>\tfrac12(1-1/\lfloor k/3\rfloor)\) and
-\(c_k>b_k\), respectively.
-For odd \(k\ge11\), the corresponding inequalities are
-\(2\lfloor k/3\rfloor<k-3\) and \(k>9-\delta_k\).
-Formula~\eqref{eq:conjecture} would force the limit, and hence
-the limsup, to equal \(\tfrac12(1-1/\lfloor k/3\rfloor)\),
-contradicting the lower bound.
+For even \(k\ge8\), the inequality \(c_k>b_k\) is equivalent
+to \(k>6-\delta_k\); for odd \(k\ge11\), it is equivalent
+to \(k>9-\delta_k\). Both inequalities hold.
+When \(3\mid k\), Toft's coefficient is
+\(b_k=\tfrac12(1-1/\lfloor k/3\rfloor)\).
+Formula~\eqref{eq:conjecture} would force the normalized limit,
+and hence the limsup, to equal \(b_k\), contradicting the
+lower bound for \(k\ge12\).
 At \(k=9\), all three coefficients equal \(1/3\).
 \end{proof}
 
-The failure of \eqref{eq:conjecture} for \(3\nmid k\) was already
-implied by Toft's constructions; the new cases are \(3\mid k\),
-\(k\ge12\).
-
-For even \(k=2t+2\), the graph \(G\) consists of \(t\) copies of
-Pegden's module \(U(S,T)\) \cite{Pegden}, with their active sets
-joined by an almost complete \(t\)-partite graph. The omitted edges
-form a graph \(Z\) whose adjacency is prescribed by a
-\(K_t\)-saturated graph \(H\) of small maximum degree from \cite{AEHK}.
+For even \(k=2t+2\), we combine \(t\) copies of Pegden's module
+\cite{Pegden}, joining their active sets by an almost complete
+\(t\)-partite graph. The omitted edges are prescribed by a
+\(K_t\)-saturated graph \(H\) of small maximum degree \cite{AEHK}.
 In a \((2t+1)\)-coloring, each active set needs three colors
-(Lemma~\ref{lem:module}); the degree bound forces two of them to be
-private to that part. The remaining color must then appear in all
-\(t\) parts, giving a \(K_t\) in \(Z\), impossible since \(H\) is
-\(K_t\)-free. Deleting an edge between two parts adds an edge to
-\(Z\), and saturation supplies a \(K_t\) through it, allowing one
-color to be shared in a \((2t+1)\)-coloring of \(G-e\).
-Complete joins of critical graphs, as in Dirac's construction,
-cannot share colors between factors; omitting \(Z\) costs \(o(n^2)\)
-edges and permits this shared color.
-
-The case \(t=2\) reduces to the classical two-module construction
-\cite[Section~2.1]{Pegden} and gives no improvement.
-For upper bounds on \(f_k(n)\), see Luo, Ma, and Yang
-\cite[Theorem~1.1]{LMY}.
-Section~\ref{sec:main-proof} completes the proof of
-Theorem~\ref{thm:main}.
+and the degree bound forces two to be private to that set.
+The remaining common color would give a \(K_t\) in \(H\),
+a contradiction. Saturation supplies the colorings after an
+edge between modules is deleted. Odd \(k\) follow by joining
+with \(K_1\).
 
 \section{A coloring module}
 \label{sec:module}
@@ -393,8 +371,7 @@ First let \(k=2t+2\) be even, with \(t\ge3\) fixed.
 By Alon, Erd\H{o}s, Holzman, and Krivelevich
 \cite[Theorem~7]{AEHK}, for every sufficiently large \(v\) there
 is a \(K_t\)-saturated graph \(H_v\) on \(v\) vertices with
-maximum degree \(d_v=O_t(\sqrt v)\). For the triangle-free case,
-see also \cite{HansonSeyffarth,FurediSeress}.
+maximum degree \(d_v=O_t(\sqrt v)\).
 Choose odd integers \(h_v\sim v^{1/4}\). Then \(h_v\to\infty\)
 and \(h_vd_v/v=O_t(v^{-1/4})\to0\), so all hypotheses of
 Proposition~\ref{prop:conversion} hold for sufficiently large \(v\).
@@ -463,17 +440,6 @@ T.~F. Bloom,
 \emph{Erd\H{o}s Problem \#917},
 \url{https://www.erdosproblems.com/917}.
 Accessed 5 September 2026.
-
-\bibitem{FurediSeress}
-Z.~F\"uredi and \'A.~Seress,
-Maximal triangle-free graphs with restrictions on the degrees,
-\emph{J. Graph Theory} \textbf{18} (1994), 11--24.
-\href{https://doi.org/10.1002/jgt.3190180103}{doi:10.1002/jgt.3190180103}.
-
-\bibitem{HansonSeyffarth}
-D.~Hanson and K.~Seyffarth,
-\(k\)-saturated graphs of prescribed maximum degree,
-\emph{Congr. Numer.} \textbf{42} (1984), 169--182.
 
 \bibitem{Jensen2002}
 T.~R. Jensen,

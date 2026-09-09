@@ -20,6 +20,8 @@ jobs:
           build: "true"
           test: "false"
           lint: "false"
+          # Rebuild project modules so deleted files cannot survive in the cache.
+          use-github-cache: "false"
           use-mathlib-cache: "true"
       - name: Check axioms and the community statement proof bridge
         run: lake test
