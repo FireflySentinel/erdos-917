@@ -1,10 +1,10 @@
-# Erdős Problem #917: twelve-critical graphs with $(2/5+o(1))n^2$ edges
+# Dense critical graphs and Erdős Problem #917
 
-The AEHK family is constructed in Lean over finite fields.
-[exists_prime_power_model](Erdos917/AEHK/Family.lean) proves Lemma 4 for every
-prime power $Q\ge4$, including saturation and the exact maximum degree.
-The Lean development formalizes the $k=12$ case of Theorem 1. The general
-result for other chromatic numbers is not formalized.
+Lean 4 formalization of a construction of $k$-critical graphs for every $k\ge8$.
+[dense_critical_graphs](Erdos917/General/Main.lean) gives graph sequences whose
+orders tend to infinity and whose edge densities tend to $(k-4)/(2(k-2))$ for
+even $k$, and $(k-5)/(2(k-3))$ for odd $k$.
+The $k=12$ case has density $2/5$ and disproves the proposed asymptotic formula.
 
 ## Build and check
 
@@ -21,18 +21,21 @@ LEAN_NUM_THREADS=2 lake env leanchecker Erdos917
 
 | Manuscript argument | Lean source |
 |---|---|
-| Lemma 2 at $r=11$: active colors, prescribed singleton, module-edge deletions | [Module.lean](Erdos917/Module.lean) |
-| Eleven-color impossibility | [Assembly.lean](Erdos917/Assembly.lean), `not_eleven_colorable` |
-| Proposition 3 at $t=5$: criticality and edge bounds | [Conversion.lean](Erdos917/Conversion.lean), [EdgeCount.lean](Erdos917/EdgeCount.lean) |
-| Density limit from the edge formula | [Density.lean](Erdos917/Density.lean), `density_limit_of_parameters` |
-| Lemma 4: finite geometry, clique exclusion, saturation | [Geometry.lean](Erdos917/AEHK/Geometry.lean), [Cliques.lean](Erdos917/AEHK/Cliques.lean), [Triangles.lean](Erdos917/AEHK/Triangles.lean) |
-| Lemma 4: order and exact degrees | [Degrees.lean](Erdos917/AEHK/Degrees.lean) |
-| Theorem 1 at $k=12$ and the extremal-function consequence | [Family.lean](Erdos917/AEHK/Family.lean) |
+| Lemma 2: module colorings for any palette of at least three colors | [Module.lean](Erdos917/General/Module.lean) |
+| Proposition 3: criticality, order, and edge bounds | [Conversion.lean](Erdos917/General/Conversion.lean), [EdgeCount.lean](Erdos917/General/EdgeCount.lean) |
+| Lemma 4: finite-field construction, saturation, and exact maximum degree | [PrimePowerModel.lean](Erdos917/General/PrimePowerModel.lean), `exists_prime_power_exact_model` |
+| Theorem 1: every $k\ge8$ | [Main.lean](Erdos917/General/Main.lean), `dense_critical_graphs` |
+| The $k=12$ extremal-function and limsup consequences | [Family.lean](Erdos917/AEHK/Family.lean), [Extremal.lean](Erdos917/General/Extremal.lean) |
+
+The saturated graphs are constructed in Lean over finite fields, including
+the separate triangle-free case. The proof uses no AEHK theorem as a hypothesis.
+The earlier $k=12$ construction and its bound for every prime power $Q\ge4$
+remain available in [AEHK/Family.lean](Erdos917/AEHK/Family.lean).
 
 The [proof bridge](checks/FormalConjecturesBridge.lean) derives the corresponding
 problem statements and is included in `lake test`.
-[`checks/Check.lean`](checks/Check.lean) guards the axiom dependencies to `propext`,
-`Classical.choice`, and `Quot.sound`.
+[`checks/Check.lean`](checks/Check.lean) checks the main theorem's type and guards
+the axiom dependencies to `propext`, `Classical.choice`, and `Quot.sound`.
 
 ## Use of generative AI
 
