@@ -2,14 +2,6 @@ import Erdos917
 
 /-! Axiom checks and the statement of the general construction. -/
 
-/-- info: 'Erdos917.AEHK.canonical_counterexample_critical' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
-#print axioms Erdos917.AEHK.canonical_counterexample_critical
-
-/-- info: 'Erdos917.AEHK.canonical_counterexample_density' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
-#print axioms Erdos917.AEHK.canonical_counterexample_density
-
 /-- info: 'Erdos917.not_density_three_eighths' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Erdos917.not_density_three_eighths

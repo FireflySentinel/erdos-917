@@ -1,3 +1,4 @@
+import Erdos917.Definitions
 import Mathlib.Combinatorics.SimpleGraph.Coloring.Vertex
 import Mathlib.Combinatorics.SimpleGraph.DeleteEdges
 import Mathlib.Combinatorics.Pigeonhole
@@ -6,10 +7,6 @@ import Mathlib.Tactic
 namespace Erdos917
 
 open Finset SimpleGraph
-
-abbrev Palette := Option (Fin 5 × Bool)
-
-@[simp] lemma card_palette : Fintype.card Palette = 11 := by decide
 
 /-- A coloring certificate with at most one specified monochromatic edge. -/
 def ProperExcept {V C : Type*} (G : SimpleGraph V) (f : V → C) (u v : V) : Prop :=
@@ -149,5 +146,62 @@ lemma update_proper_except {V C : Type*} [DecidableEq V] (G : SimpleGraph V)
     exact Or.inr ⟨hu a hab.symm hfa,rfl⟩
   · have h := f.valid hab
     exact False.elim (h (by simpa [Function.update_of_ne ha,Function.update_of_ne hb] using heq))
+
+lemma proper_subgraph_colorable_of_edge_deletions {V : Type*} (G : SimpleGraph V) (k : ℕ)
+    (hn : ∀ u,∃ v,G.Adj u v)
+    (he : ∀ u v,G.Adj u v → (G.deleteEdges {s(u,v)}).Colorable k)
+    (Q : G.Subgraph) (hQ : Q ≠ ⊤) : Q.coe.Colorable k := by
+  classical
+  have hex : ∃ u v,G.Adj u v ∧ ¬ Q.Adj u v := by
+    by_contra! h
+    apply hQ
+    have hv : Q.verts = Set.univ := by
+      apply Set.eq_univ_iff_forall.mpr
+      intro u
+      obtain ⟨v,huv⟩ := hn u
+      exact Q.edge_vert (h u v huv)
+    apply Subgraph.ext hv
+    funext u v
+    exact propext ⟨Q.adj_sub,h u v⟩
+  obtain ⟨u,v,huv,hq⟩ := hex
+  obtain ⟨c⟩ := he u v huv
+  refine ⟨Coloring.mk (fun x => c x.val) ?_⟩
+  intro x y hxy
+  apply c.valid
+  simp only [deleteEdges_adj,Set.mem_singleton_iff,Sym2.eq_iff]
+  refine ⟨Q.adj_sub hxy,?_⟩
+  rintro (⟨hx,hy⟩|⟨hx,hy⟩)
+  · apply hq
+    simpa only [Subgraph.coe_adj,← hx,← hy] using hxy
+  · apply hq
+    simpa only [Subgraph.coe_adj,← hx,← hy] using hxy.symm
+
+/-- Full proper-subgraph criticality is preserved by relabeling vertices. -/
+lemma IsCritical.iso {V W : Type*} {G : SimpleGraph V} {H : SimpleGraph W}
+    {k : ℕ} (hG : IsCritical G k) (e : G ≃g H) : IsCritical H k := by
+  refine ⟨(chromaticNumber_congr e).symm.trans hG.1, ?_⟩
+  intro Q hQ
+  have hpre : Q.comap e.toHom ≠ ⊤ := by
+    intro h
+    have ht : (⊤ : G.Subgraph).map e.toHom ≤ Q :=
+      (Subgraph.map_le_iff_le_comap e.toHom ⊤ Q).mpr (by rw [h])
+    exact hQ (top_le_iff.mp (by simpa using ht))
+  obtain ⟨c⟩ := hG.2 _ hpre
+  refine ⟨Coloring.mk (fun x => c ⟨e.symm x, by simp⟩) ?_⟩
+  intro x y hxy
+  apply c.valid
+  exact ⟨e.symm.map_adj_iff.mpr (Q.adj_sub hxy), by simpa using hxy⟩
+
+lemma IsCritical.edgeCritical {V : Type*} {G : SimpleGraph V} {k : ℕ}
+    (hG : IsCritical G k) : IsEdgeCritical G k := by
+  refine ⟨hG.1, ?_⟩
+  intro u v huv
+  let Q := G.toSubgraph (G.deleteEdges {s(u, v)}) (G.deleteEdges_le _)
+  have hQ : Q ≠ ⊤ := by
+    intro h
+    have ha : Q.Adj u v := by rw [h]; exact huv
+    simp [Q] at ha
+  obtain ⟨c⟩ := hG.2 Q hQ
+  exact ⟨Coloring.mk (fun x => c ⟨x, Set.mem_univ x⟩) (fun hxy => c.valid hxy)⟩
 
 end Erdos917

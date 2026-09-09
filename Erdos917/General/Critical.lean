@@ -1,4 +1,4 @@
-import Erdos917.Critical
+import Erdos917.Basic
 import Erdos917.General.Deletion
 
 namespace Erdos917.General

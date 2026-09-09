@@ -1,5 +1,5 @@
 import Erdos917.General.Cone
-import Erdos917.Extremal
+import Erdos917.Definitions
 
 /-! Theorem 1, stated for finite graphs and every chromatic number at least eight. -/
 namespace Erdos917

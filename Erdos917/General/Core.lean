@@ -1,10 +1,10 @@
 import Erdos917.General.CyclicIntervals
-import Erdos917.AEHK.Geometry
+import Erdos917.Geometry
 
 /-! The AEHK core and its independent line vertices. -/
 
 namespace Erdos917.General
-open Finset SimpleGraph Erdos917.AEHK
+open Finset SimpleGraph Erdos917.Geometry
 
 variable {q r : ℕ} [NeZero q]
 

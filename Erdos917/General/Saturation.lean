@@ -11,8 +11,6 @@ structure Saturated (n : ℕ) {V : Type*} (H : SimpleGraph V) : Prop where
   common : ∀ z w,z ≠ w → ¬ H.Adj z w → ∃ t : Fin (n+1) → V,
     (∀ i j,i ≠ j → H.Adj (t i) (t j)) ∧ ∀ i,H.Adj z (t i) ∧ H.Adj w (t i)
 
-def label {X Y V : Type*} (e : Y ≃ V × Bool) (p : X × Y) : V := (e p.2).1
-
 def blowupGraph {X Y V : Type*} (H : SimpleGraph V) (e : Y ≃ V × Bool) :
     SimpleGraph ((Part n) × (X × Y)) where
   Adj u v := u.1 ≠ v.1 ∧ H.Adj (label e u.2) (label e v.2)

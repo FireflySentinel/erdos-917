@@ -2,7 +2,7 @@ import Mathlib
 
 /-! A coordinate model of the truncated plane used by AEHK. -/
 
-namespace Erdos917.AEHK
+namespace Erdos917.Geometry
 
 variable {q : ℕ} [NeZero q]
 
@@ -78,4 +78,4 @@ noncomputable def Plane.ofField (hq : Fintype.card F = q) : Plane q := by
       _ = Fintype.card F := Fintype.card_congr (lineFiber F (d i) (e.symm j)).symm
       _ = q := hq
 
-end Erdos917.AEHK
+end Erdos917.Geometry

@@ -40,7 +40,7 @@ private theorem criticalGraph_twelve_iff {V : Type*} (G : SimpleGraph V) :
     exact lt_of_le_of_lt (h u v huv).chromaticNumber_le (by norm_num)
 
 private theorem extremalEdges_twelve (n : ℕ) : extremalEdges 12 n = f12 n := by
-  simp only [extremalEdges, f12, criticalGraph_twelve_iff]
+  simp only [extremalEdges, f12, fk, criticalGraph_twelve_iff]
   rfl
 
 /-- The normalized extremal edge count at $k=12$ cannot converge below $2/5$. -/

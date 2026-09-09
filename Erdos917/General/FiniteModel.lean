@@ -6,7 +6,7 @@ import Erdos917.General.SaturationDefinition
 /-! The saturated graph of clique order `r + 4`, including its exact parameters. -/
 
 namespace Erdos917.General
-open SimpleGraph Erdos917.AEHK
+open SimpleGraph Erdos917.Geometry
 variable {q : ℕ} [NeZero q]
 
 theorem planeGraph_saturated (r : ℕ) (P : Plane q) (hq : 2*(r+2) ≤ q) :

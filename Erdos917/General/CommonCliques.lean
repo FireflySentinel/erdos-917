@@ -3,7 +3,7 @@ import Erdos917.General.Core
 /-! Explicit common-neighborhood cliques for every kind of missing edge. -/
 
 namespace Erdos917.General
-open Finset SimpleGraph Erdos917.AEHK
+open Finset SimpleGraph Erdos917.Geometry
 
 variable {q r : ℕ} [NeZero q]
 

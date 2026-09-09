@@ -3,7 +3,7 @@ import Erdos917.General.SaturationDefinition
 
 /-! The three-saturated case has no edges between different core levels. -/
 namespace Erdos917.General
-open Finset SimpleGraph Erdos917.AEHK
+open Finset SimpleGraph Erdos917.Geometry
 variable {q : ℕ} [NeZero q]
 
 abbrev TriangleCore (q : ℕ) := Fin (q+1) × ZMod q × Bool

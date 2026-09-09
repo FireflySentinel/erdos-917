@@ -3,7 +3,7 @@ import Erdos917.General.Core
 /-! Clique bounds for the core and for a line neighborhood. -/
 
 namespace Erdos917.General
-open Finset SimpleGraph Erdos917.AEHK
+open Finset SimpleGraph Erdos917.Geometry
 
 variable {q r : ℕ}
 

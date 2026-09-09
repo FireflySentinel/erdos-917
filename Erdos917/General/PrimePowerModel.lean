@@ -2,7 +2,7 @@ import Erdos917.General.FiniteModel
 import Erdos917.General.TriangleModel
 
 namespace Erdos917.General
-open SimpleGraph Erdos917.AEHK
+open SimpleGraph Erdos917.Geometry
 
 def baseOrder (n q : ℕ) : ℕ := (n+1)*(n+2)*(q^2+q)+q^2
 def baseBound (n q : ℕ) : ℕ := 2*(n+3)^2*q

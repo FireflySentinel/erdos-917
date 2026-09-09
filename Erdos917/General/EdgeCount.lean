@@ -1,4 +1,4 @@
-import Erdos917.EdgeCount
+import Erdos917.GraphCounts
 import Erdos917.General.Conversion
 
 /-! Exact edge count for the parameterized module construction. -/
@@ -39,7 +39,7 @@ private lemma assembly_pair_sum {X Y V : Type*} [Fintype X] [Fintype Y] [Fintype
     intro p _
     apply sum_congr rfl
     intro q _
-    by_cases hpq : H.Adj (label e p) (label e q) <;> simp_all [label, Erdos917.label]
+    by_cases hpq : H.Adj (label e p) (label e q) <;> simp_all [label]
 
 private lemma part_sum (i : (Part n)) (a b : ℝ) :
     (∑ j : (Part n), if i = j then a else b) = a + (n+2) * b := by

@@ -1,7 +1,7 @@
-import Erdos917.AEHK.Geometry
+import Erdos917.Geometry
 
 namespace Erdos917.General
-open Erdos917.AEHK
+open Erdos917.Geometry
 
 lemma lineValue_two (F : Type) [Field F] (i j : Option F) (hij : i ≠ j) (a b : F) :
     ∃ l : F × F, lineValue F l i = a ∧ lineValue F l j = b := by

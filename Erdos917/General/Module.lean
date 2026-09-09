@@ -1,4 +1,4 @@
-import Erdos917.Module
+import Erdos917.ModuleGraph
 
 /-! The module coloring lemma for every finite palette with at least three colors. -/
 
