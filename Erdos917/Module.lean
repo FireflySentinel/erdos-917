@@ -64,7 +64,7 @@ def restrictS {C : Type*} (f : (moduleGraph S T).Coloring C) : S.Coloring C :=
 def restrictT {C : Type*} (f : (moduleGraph S T).Coloring C) : T.Coloring C :=
   Coloring.mk (fun y => f (t y)) (fun {_x _y} h => f.valid h)
 
-/-- Lemma 2(1): the active set cannot be contained in two colors. -/
+/-- Lemma 3(1): the active set cannot be contained in two colors. -/
 theorem active_not_two (hS : ¬ S.Colorable 10) (hT : ¬ T.Colorable 9)
     (f : (moduleGraph S T).Coloring Palette) (α β : Palette) (hαβ : α ≠ β) :
     ∃ p : X × Y, f (a p) ≠ α ∧ f (a p) ≠ β := by
@@ -128,7 +128,7 @@ lemma activeRule_good {C : Type*} (p₀ : X × Y) (α β γ : C)
         exact fun he => hy (ht y he.symm)
     · simpa [activeRule,hx] using (htα y).symm
 
-/-- Lemma 2(2), with the colors of the two structural neighbors also recorded. -/
+/-- Lemma 3(2), with the colors of the two structural neighbors also recorded. -/
 theorem singleton_active_coloring (hS : CriticalData S 10) (hT : CriticalData T 9)
     (p₀ : X × Y) (α β γ : Palette) (hαβ : α ≠ β) (hαγ : α ≠ γ) (hβγ : β ≠ γ) :
     ∃ f : (moduleGraph S T).Coloring Palette,
@@ -306,7 +306,7 @@ lemma delete_spoke_coloring (hS : CriticalData S 10) (hT : CriticalData T 9)
       · exact Or.inr h
       · exact False.elim (hp ((hcγ p).mp h))
 
-/-- Lemma 2(3): every module edge has an explicit eleven-color deletion certificate. -/
+/-- Lemma 3(3): every module edge has an explicit eleven-color deletion certificate. -/
 theorem delete_edge_coloring (hS : CriticalData S 10) (hT : CriticalData T 9)
     (u v : ModuleVertex X Y) (huv : (moduleGraph S T).Adj u v)
     (α β : Palette) (hαβ : α ≠ β) :

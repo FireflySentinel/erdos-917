@@ -4,7 +4,7 @@ import Mathlib.Tactic
 namespace Erdos917.General
 open Filter Topology
 
-/-- Order and size formulas of Proposition 3, viewed over the reals. -/
+/-- Order and size formulas of Proposition 4, viewed over the reals. -/
 def constructionOrder (n : ℕ) (h v : ℝ) : ℝ := (n+3) * (2 * h * v + h + 2 * v)
 noncomputable def constructionSize (n : ℕ) (h v m : ℝ) : ℝ :=
   ((n+3)*(n+2)/2 : ℝ) * ((2 * h * v) ^ 2 - 8 * h ^ 2 * m) + (n+3) * (4*h*v+(2*n+5)*h+4*(n+2)*v-(4*(n : ℝ)^2+20*n+23))

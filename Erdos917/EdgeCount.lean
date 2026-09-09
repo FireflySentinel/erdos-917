@@ -174,7 +174,7 @@ theorem assembly_edgeCount {X Y V : Type*} [Fintype X] [Fintype Y] [Fintype V]
   simp only [sum_const, card_univ, show Fintype.card Part = 5 from rfl, nsmul_eq_mul, Nat.cast_ofNat] at h
   linarith
 
-/-- Exact edge count (3.4) for Proposition 3, using real subtraction. -/
+/-- Exact edge count for the construction in Proposition 4, using real subtraction. -/
 theorem conversion_edgeCount {V : Type*} [Fintype V]
     (H : SimpleGraph V) {h : ℕ} (hv : 5 ≤ Fintype.card V) (hh : 11 ≤ h) :
     (edgeCount (conversionGraph H h hv) : ℝ) =
@@ -186,7 +186,7 @@ theorem conversion_edgeCount {V : Type*} [Fintype V]
   push_cast
   ring
 
-/-- Proposition 3, equation (3.3). Only a degree bound is needed for this estimate. -/
+/-- Proposition 4, equation (3.3). Only a degree bound is needed for this estimate. -/
 theorem conversion_edgeCount_lower {V : Type*} [Fintype V]
     (H : SimpleGraph V) [DecidableRel H.Adj] {h d : ℕ}
     (hv : 5 ≤ Fintype.card V) (hh : 11 ≤ h) (hd : ∀ z, H.degree z ≤ d) :

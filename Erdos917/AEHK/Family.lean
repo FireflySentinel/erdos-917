@@ -44,7 +44,7 @@ theorem exists_finite_model (P : Plane q) (hq : 4 ≤ q) :
     rw [e.apply_symm_apply]
     exact core_degree P hq x
 
-/-- Lemma 4 for every prime power at least four; the degree bound is attained. -/
+/-- Lemma 5 for every prime power at least four; the degree bound is attained. -/
 theorem exists_prime_power_model (p n : ℕ) [Fact p.Prime] (hn : n ≠ 0) (hq : 4 ≤ p ^ n) :
     ∃ G : SimpleGraph (Fin (13 * (p ^ n) ^ 2 + 12 * p ^ n)), G.CliqueFree 5 ∧
       (∀ x y, x ≠ y → ¬ G.Adj x y → ¬ (G ⊔ edge x y).CliqueFree 5) ∧

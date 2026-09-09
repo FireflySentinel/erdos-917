@@ -3,7 +3,7 @@ import Erdos917.General.SaturationDefinition
 import Erdos917.Cone
 import Erdos917.OddCycle
 
-/-! Proposition 3: construction of critical graphs from saturated graphs of arbitrary clique order. -/
+/-! Proposition 4: construction of critical graphs from saturated graphs of arbitrary clique order. -/
 
 namespace Erdos917.General
 open SimpleGraph
@@ -37,13 +37,13 @@ noncomputable def labelEquiv (n : ℕ) (V : Type*) [Fintype V] (hv : n+3 ≤ Fin
     TVertex n (Fintype.card V) ≃ V × Bool :=
   Fintype.equivOfCardEq (by rw [card_TVertex hv]; simp [mul_comm])
 
-/-- The module graph in Proposition 3, with a chosen labeling bijection. -/
+/-- The module graph in Proposition 4, with a chosen labeling bijection. -/
 noncomputable def conversionGraph (n : ℕ) {V : Type*} [Fintype V] (H : SimpleGraph V)
     (h : ℕ) (hv : n+3 ≤ Fintype.card V) :
     SimpleGraph (AssemblyVertex n (SVertex n h) (TVertex n (Fintype.card V))) :=
   assemblyGraph (SGraph n h) (TGraph n (Fintype.card V)) (blowupGraph H (labelEquiv n V hv))
 
-/-- Proposition 3: the conversion graph is critical. -/
+/-- Proposition 4: the conversion graph is critical. -/
 theorem conversion_critical {V : Type*} [Fintype V]
     (H : SimpleGraph V) [DecidableRel H.Adj] (h d : ℕ)
     (hv : n+3 ≤ Fintype.card V) (hh : 2*n+7 ≤ h) (hodd : Odd h)

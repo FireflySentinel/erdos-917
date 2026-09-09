@@ -27,7 +27,7 @@ def assemblyGraph {X Y : Type*} (S : SimpleGraph X) (T : SimpleGraph Y)
     · exact (moduleGraph S T).ne_of_adj h rfl
     · exact h rfl⟩
 
-/-- Finite combinatorial properties of the omitted-edge graph used by Proposition 3. -/
+/-- Finite combinatorial properties of the omitted-edge graph used by Proposition 4. -/
 structure Scaffold {X Y : Type*} [Fintype X] [Fintype Y]
     (Z : SimpleGraph ((Part n) × (X × Y))) (D : ℕ) : Prop where
   degree : ∀ i j : (Part n),i ≠ j → ∀ q : X × Y,

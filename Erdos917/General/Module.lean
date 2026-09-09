@@ -17,7 +17,7 @@ variable {m : ℕ} {C : Type*} [Fintype C] [DecidableEq C]
   (hcard : Fintype.card C = m+3)
 include hcard
 
-/-- Lemma 2(1): the active set cannot be contained in two colors. -/
+/-- Lemma 3(1): the active set cannot be contained in two colors. -/
 theorem active_not_two (hS : ¬ S.Colorable (m+2)) (hT : ¬ T.Colorable (m+1))
     (f : (moduleGraph S T).Coloring C) (α β : C) (hαβ : α ≠ β) :
     ∃ p : X × Y, f (a p) ≠ α ∧ f (a p) ≠ β := by
@@ -55,7 +55,7 @@ section Assignments
 
 variable [DecidableEq X] [DecidableEq Y]
 
-/-- Lemma 2(2), with the colors of the two structural neighbors also recorded. -/
+/-- Lemma 3(2), with the colors of the two structural neighbors also recorded. -/
 theorem singleton_active_coloring (hS : CriticalData S (m+2)) (hT : CriticalData T (m+1))
     (p₀ : X × Y) (α β γ : C) (hαβ : α ≠ β) (hαγ : α ≠ γ) (hβγ : β ≠ γ) :
     ∃ f : (moduleGraph S T).Coloring C,
@@ -177,7 +177,7 @@ lemma delete_spoke_coloring (hS : CriticalData S (m+2)) (hT : CriticalData T (m+
       · exact Or.inr h
       · exact False.elim (hp ((hcγ p).mp h))
 
-/-- Lemma 2(3): every module edge has an explicit palette deletion certificate. -/
+/-- Lemma 3(3): every module edge has an explicit palette deletion certificate. -/
 theorem delete_edge_coloring (hS : CriticalData S (m+2)) (hT : CriticalData T (m+1))
     (u v : ModuleVertex X Y) (huv : (moduleGraph S T).Adj u v)
     (α β : C) (hαβ : α ≠ β) :

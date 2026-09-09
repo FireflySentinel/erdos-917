@@ -7,7 +7,7 @@ open SimpleGraph Filter Topology
 
 namespace AEHK
 
-/-- Manuscript Lemma 4, specialized to Q = (3^(s+4))²: AEHK, Example 2
+/-- Manuscript Lemma 5, specialized to Q = (3^(s+4))²: AEHK, Example 2
 (Section 4), with k = 5 and one added vertex per truncated-plane line.
 This gives 12Q(Q+1) core vertices and Q² line vertices. Their respective degrees
 are 22Q-3 and 12(Q+1), so the latter is at most the former for Q ≥ 4.

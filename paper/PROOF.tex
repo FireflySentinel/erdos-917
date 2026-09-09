@@ -13,6 +13,7 @@
 }
 
 \newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \theoremstyle{remark}
@@ -41,11 +42,14 @@ For every fixed integer \(k\ge8\), we construct a sequence of
  \dfrac{k-5}{2(k-3)},&k\text{ odd}.
  \end{cases}
 \]
-For \(k=12\), the density is \(2/5>3/8\), disproving
-\(f_{12}(n)\sim3n^2/8\) and hence the general asymptotic formula
-proposed in Erd\H{o}s Problem 917.
+For every \(k\ge8\), \(k\ne9\), this density exceeds
+\(\tfrac12(1-1/\lfloor k/3\rfloor)\), disproving the
+corresponding asymptotic formula in Erd\H{o}s Problem 917;
+for \(k=12\), it is \(2/5>3/8\).
 The construction combines a coloring module of Pegden with
 saturated graphs of sublinear maximum degree.
+The complete proof is formalized and verified in Lean 4; generative AI
+was used in developing the arguments and the manuscript.
 \end{abstract}
 
 \section{Introduction}
@@ -54,10 +58,9 @@ All graphs are finite and simple. A graph is \(k\)-critical if it has
 chromatic number \(k\) and every proper subgraph is \((k-1)\)-colorable;
 for graphs without isolated vertices this is equivalent to requiring
 only that deleting any edge lowers the chromatic number.
-Write \(e(G)=|E(G)|\). For each integer \(n\ge0\), let \(f_k(n)\) be
-the largest edge count of a \(k\)-chromatic graph on \(n\) vertices
-satisfying this edge-deletion condition, with \(f_k(n)=0\) if no such
-graph exists.
+Write \(e(G)=|E(G)|\), and let \(f_k(n)\) be the maximum number
+of edges of a \(k\)-critical graph on \(n\) vertices (in the
+edge-deletion sense), or \(0\) if none exists.
 Erd\H{o}s \cite[p.~28]{Erdos1969} conjectured that, for fixed \(k\ge6\),
 \begin{equation}\label{eq:conjecture}
  f_k(n)\sim\frac12\left(1-\frac1{\lfloor k/3\rfloor}\right)n^2.
@@ -86,6 +89,44 @@ graphs \(G_s\) such that \(|V(G_s)|\to\infty\) and
  \end{cases}
 \]
 \end{theorem}
+
+Write \(c_k\) for the density in Theorem~\ref{thm:main}.
+Toft's coefficients \cite{Toft1970}, in the notation of
+\cite[Section~1]{LMY}, are
+\[
+ b_k=\frac12-\frac3{2k-\delta_k},\qquad
+ \delta_k=
+ \begin{cases}
+ 0,&k\equiv0\pmod3,\\
+ 8/7,&k\equiv1\pmod3,\\
+ 44/23,&k\equiv2\pmod3.
+ \end{cases}
+\]
+
+\begin{corollary}\label{cor:general}
+For every \(k\ge8\), \(k\ne9\), the formula
+\eqref{eq:conjecture} fails, and the density \(c_k\) exceeds
+Toft's coefficient \(b_k\). In particular,
+\eqref{eq:conjecture} fails for every multiple of three at least twelve.
+For \(k=9\), the density \(c_9=1/3\) equals both coefficients.
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:main} and \(f_k(|V(G_s)|)\ge e(G_s)\) give
+\(\limsup_{n\to\infty}f_k(n)/n^2\ge c_k\).
+For even \(k\ge8\),
+\[
+ 2\lfloor k/3\rfloor<k-2,\qquad k>6-\delta_k,
+\]
+which imply \(c_k>\tfrac12(1-1/\lfloor k/3\rfloor)\) and
+\(c_k>b_k\), respectively.
+For odd \(k\ge11\), the corresponding inequalities are
+\(2\lfloor k/3\rfloor<k-3\) and \(k>9-\delta_k\).
+At \(k=9\), all three coefficients equal \(1/3\).
+\end{proof}
+
+The construction does not address \(k=6,7\).
+
 
 For even \(k=2t+2\), the graph \(G\) consists of \(t\) copies of
 Pegden's module \(U(S,T)\) \cite{Pegden}, with their active sets
@@ -341,26 +382,15 @@ Since \(2b^2m\le b^2vd\) and \(a=bv\), at least
 proving \eqref{eq:edge-bound}.
 \end{proof}
 
-\begin{remark}[Exact edge count]
-The construction in Proposition~\ref{prop:conversion} satisfies
-\begin{equation}\label{eq:exact-edges}
- e(G)=\binom t2(a^2-8h^2m)
- +t\bigl(2a+(2t-1)h+4(t-1)v-(4t^2-4t-1)\bigr),
-\end{equation}
-where \(m=e(H)\).
-Indeed,
-\[
- e(S)=(2t-1)h-(t-1)(2t+1),\qquad
- e(T)=4(t-1)v-t(2t-3),
-\]
-and each module has \(2a\) edges incident with its active set.
-\end{remark}
+
 
 \section{Saturated graphs of small maximum degree}
 \label{sec:parameters}
 
-We use the construction in \cite[Section~4, Example~2]{AEHK} and
-include its saturation verification below.
+We use \cite[Section~4, Example~2]{AEHK}, with \(k=t\) and
+one added vertex per line, and include the saturation verification.
+As in that construction, the case \(t=3\) has no edges between
+core vertices in different levels.
 
 \begin{lemma}[Alon--Erd\H{o}s--Holzman--Krivelevich]
 \label{lem:saturation}
@@ -491,7 +521,7 @@ using Lemma~\ref{lem:saturation}. Its order and maximum degree
 satisfy \(v=\Theta_t(h^4)\) and \(d=O_t(h^2)\), so
 \(h\to\infty\) and \(2t(t-1)hd/v\to0\). Consequently \(h\ge2t+1\), \(v\ge t\),
 \(d<v-1\), and \eqref{eq:degree-condition} hold for all
-sufficiently large \(v\).
+sufficiently large \(s\).
 
 Apply Proposition~\ref{prop:conversion}, and write
 \(a=2hv\) and \(N=|V(G)|\). We have
@@ -499,8 +529,9 @@ Apply Proposition~\ref{prop:conversion}, and write
  \frac{N}{ta}=1+\frac1h+\frac1{2v}\longrightarrow1,
  \qquad \frac d v\longrightarrow0.
 \]
-The edges within modules number \(O_t(a)\), by
-\eqref{eq:exact-edges}, and hence
+Since \(e(S)=O_t(h)\), \(e(T)=O_t(v)\), and each module has
+\(2a\) edges incident with its active set, the edges within
+modules number \(O_t(a)\). Hence
 \[
  \binom t2a^2\left(1-\frac d v\right)
  \le e(G)\le\binom t2a^2+O_t(a).
@@ -517,37 +548,32 @@ vertices and \(e(G)+N\) edges, and has the same limiting density,
 now equal to \((k-5)/(2(k-3))\).
 \end{proof}
 
-\begin{proof}[The case \(k=12\)]
-For each integer \(s\ge4\), set
-\[
- h=3^s,\qquad Q=h^2,
-\]
-and take \(H=H_{5,Q}\) from Lemma~\ref{lem:saturation}. Write
-\(v=|V(H)|\) and \(d=\Delta(H)\). Then
-\[
- v=13h^4+12h^2,\qquad d=22h^2-3<v-1.
-\]
-The integer \(h\) is odd and at least \(81\). Moreover,
-\[
- 40hd<880h^3<13h^4\le v,
-\]
-since \(13h\ge13\cdot81>880\).
-Proposition~\ref{prop:conversion} with \(t=5\) gives a twelve-critical
-graph \(G_s\) of order \(N_s=5(2hv+h+2v)\).
-Since \(N_s/(10hv)\to1\) and \(d/v\to0\),
-\eqref{eq:edge-bound} and \eqref{eq:exact-edges} give
-\(e(G_s)/N_s^2\to2/5\).
-Finally, \(N_s\to\infty\) and \(f_{12}(N_s)\ge e(G_s)\), so
+\begin{corollary}\label{cor:twelve}
 \[
  \limsup_{n\to\infty}\frac{f_{12}(n)}{n^2}\ge\frac25>\frac38.
 \]
-Thus \(f_{12}(n)\not\sim3n^2/8\).
+In particular, \(f_{12}(n)\not\sim3n^2/8\).
+\end{corollary}
+
+\begin{proof}
+Take \(k=12\) in Theorem~\ref{thm:main}.
+Writing \(N_s=|V(G_s)|\), we have \(N_s\to\infty\),
+\(e(G_s)/N_s^2\to2/5\), and \(f_{12}(N_s)\ge e(G_s)\).
+The claimed limsup bound follows.
 \end{proof}
 
 \section*{Code availability}
 
-The Lean 4 formalization is available at
+Theorem~\ref{thm:main} is formalized for every \(k\ge8\) in the
+top-level declaration \nolinkurl{Erdos917.dense_critical_graphs}, available at
 \url{https://github.com/FireflySentinel/erdos-917}.
+Its statement uses the graph-theoretic definitions \texttt{IsCritical}
+and \texttt{edgeCount}.
+Its axiom dependencies are \texttt{propext}, \texttt{Classical.choice},
+and \texttt{Quot.sound}.
+Corollaries~\ref{cor:general} and~\ref{cor:twelve} are formalized as
+\nolinkurl{Erdos917.corollary_two} and
+\nolinkurl{Erdos917.f12_limsup_ge_two_fifths}, respectively.
 
 \section*{Declaration of generative AI and AI-assisted technologies in the writing process}
 

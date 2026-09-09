@@ -37,3 +37,17 @@ example (k : ℕ) (hk : 8 ≤ k) :
 /-- info: 'Erdos917.f12_limsup_ge_two_fifths' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Erdos917.f12_limsup_ge_two_fifths
+
+/-- info: 'Erdos917.corollary_two' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.corollary_two
+
+open Filter Topology Erdos917 in
+example (k : ℕ) (hk : 8 ≤ k) (h9 : k ≠ 9) :
+    ¬ Asymptotics.IsEquivalent atTop (fun n : ℕ => (fk k n : ℝ))
+      (fun n : ℕ => (1/2*(1-1/((k/3 : ℕ) : ℝ)))*(n : ℝ)^2) :=
+  (corollary_two k hk h9).2.2.2
+
+open Erdos917 in
+example : constructionDensity 9 = 1/3 ∧ erdosCoefficient 9 = 1/3 ∧
+    toftCoefficient 9 = 1/3 := coefficients_nine

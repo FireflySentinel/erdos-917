@@ -81,7 +81,7 @@ theorem conversion_edgeCount {V : Type*} [Fintype V]
   push_cast
   ring
 
-/-- The lower bound in Proposition 3. -/
+/-- The lower bound in Proposition 4. -/
 theorem conversion_edgeCount_lower {V : Type*} [Fintype V]
     (H : SimpleGraph V) [DecidableRel H.Adj] {h d : ℕ}
     (hv : n+3 ≤ Fintype.card V) (hh : 2*n+7 ≤ h) (hd : ∀ z, H.degree z ≤ d) :

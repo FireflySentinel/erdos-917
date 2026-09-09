@@ -3,7 +3,7 @@ import Erdos917.SaturationDefinition
 import Erdos917.Cone
 import Erdos917.OddCycle
 
-/-! Proposition 3: construction of twelve-critical graphs from K5-saturated graphs. -/
+/-! Proposition 4: construction of twelve-critical graphs from K5-saturated graphs. -/
 
 namespace Erdos917
 open SimpleGraph
@@ -36,13 +36,13 @@ noncomputable def labelEquiv (V : Type*) [Fintype V] (hv : 5 ≤ Fintype.card V)
     TVertex (Fintype.card V) ≃ V × Bool :=
   Fintype.equivOfCardEq (by rw [card_TVertex hv]; simp [mul_comm])
 
-/-- The five-module graph in Proposition 3, with a chosen labeling bijection. -/
+/-- The five-module graph in Proposition 4, with a chosen labeling bijection. -/
 noncomputable def conversionGraph {V : Type*} [Fintype V] (H : SimpleGraph V)
     (h : ℕ) (hv : 5 ≤ Fintype.card V) :
     SimpleGraph (AssemblyVertex (SVertex h) (TVertex (Fintype.card V))) :=
   assemblyGraph (SGraph h) (TGraph (Fintype.card V)) (blowupGraph H (labelEquiv V hv))
 
-/-- Proposition 3: the conversion graph is twelve-critical. -/
+/-- Proposition 4: the conversion graph is twelve-critical. -/
 theorem conversion_twelve_critical {V : Type*} [Fintype V]
     (H : SimpleGraph V) [DecidableRel H.Adj] (h d : ℕ)
     (hv : 5 ≤ Fintype.card V) (hh : 11 ≤ h) (hodd : Odd h)
