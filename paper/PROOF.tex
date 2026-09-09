@@ -46,7 +46,7 @@ For every \(k\ge8\) except \(k=9\), this improves the best known
 lower bounds, due to Toft (1970). For \(k\) divisible by three and
 at least twelve, it disproves the asymptotic formula proposed in
 Erd\H{o}s Problem 917, previously known to fail when \(3\nmid k\).
-For \(k=12\), the density is \(2/5>3/8\).
+The smallest new case for the formula is \(k=12\), with density \(2/5>3/8\).
 The construction combines a coloring module of Pegden with
 saturated graphs of sublinear maximum degree.
 The complete proof is formalized and verified in Lean 4; generative AI
@@ -108,10 +108,7 @@ Toft's coefficients \cite{Toft1970}, in the notation of
 For every \(k\ge8\), \(k\ne9\), the density \(c_k\) exceeds
 Toft's coefficient \(b_k\), and \eqref{eq:conjecture} fails.
 In particular, \eqref{eq:conjecture} fails for every multiple
-of three at least twelve. For \(k=12\),
-\[
- \limsup_{n\to\infty}\frac{f_{12}(n)}{n^2}\ge\frac25>\frac38.
-\]
+of three at least twelve.
 For \(k=9\), the density \(c_9=1/3\) equals both coefficients.
 \end{corollary}
 
@@ -128,8 +125,7 @@ For odd \(k\ge11\), the corresponding inequalities are
 \(2\lfloor k/3\rfloor<k-3\) and \(k>9-\delta_k\).
 Formula~\eqref{eq:conjecture} would force the limit, and hence
 the limsup, to equal \(\tfrac12(1-1/\lfloor k/3\rfloor)\),
-contradicting the lower bound. Taking \(k=12\) gives the displayed
-inequality.
+contradicting the lower bound.
 At \(k=9\), all three coefficients equal \(1/3\).
 \end{proof}
 
@@ -153,26 +149,12 @@ Complete joins of critical graphs, as in Dirac's construction,
 cannot share colors between factors; omitting \(Z\) costs \(o(n^2)\)
 edges and permits this shared color.
 
-At \(t=2\), the graph \(H\) is edgeless and the two active sets
-are completely joined, as in Pegden's two-module construction
-\cite[Section~2.1]{Pegden}. The limiting density is \(1/4\),
-giving no improvement for \(k=6\) or for \(k=7\) after taking a cone.
-
-Deleting the \(O_k(n)\) module edges leaves a \(t\)-partite graph,
-so the asymptotic density of this construction is at most
-\((t-1)/(2t)\), equal to \(2/5\) when \(k=12\).
-For fixed \(k\ge4\) and sufficiently large \(n\), Luo, Ma, and Yang
-\cite[Theorem~1.1]{LMY} give
-\[
- f_k(n)\le e(T_{k-2}(n))-\frac{n^2}{36(k-1)^2}
- \le\left(\frac12-\frac1{2(k-2)}-\frac1{36(k-1)^2}\right)n^2,
-\]
-where \(T_{k-2}(n)\) is the balanced complete \((k-2)\)-partite graph.
-For even \(k\), the difference between this upper coefficient and
-\(c_k\) is \(1/(2(k-2))-1/(36(k-1)^2)\).
-At \(k=12\), the upper coefficient is \(9/20-1/4356\).
-Section~\ref{sec:parameters} constructs the saturated graphs over
-finite fields and proves Theorem~\ref{thm:main}.
+The case \(t=2\) reduces to the classical two-module construction
+\cite[Section~2.1]{Pegden} and gives no improvement.
+For upper bounds on \(f_k(n)\), see Luo, Ma, and Yang
+\cite[Theorem~1.1]{LMY}.
+Section~\ref{sec:main-proof} completes the proof of
+Theorem~\ref{thm:main}.
 
 \section{A coloring module}
 \label{sec:module}
@@ -403,190 +385,47 @@ Since \(2b^2m\le b^2vd\) and \(a=bv\), at least
 proving \eqref{eq:edge-bound}.
 \end{proof}
 
-
-
-\section{Saturated graphs of small maximum degree}
-\label{sec:parameters}
-
-Hanson and Seyffarth \cite{HansonSeyffarth} constructed maximal
-triangle-free graphs of maximum degree \(O(\sqrt n)\), and
-F\"uredi and Seress \cite{FurediSeress} improved the constant.
-We use \cite[Section~4, Example~2]{AEHK}, with \(k=t\) and one
-added vertex per line, under the sufficient condition \(Q\ge2t\).
-The case \(t=3\) is \cite[Example~2.2]{FurediSeress}; its core has
-no edges between different levels. We give the saturation verification
-and exact degree counts below.
-
-\begin{lemma}[after {\cite[Example~2]{AEHK}}]
-\label{lem:saturation}
-Let \(t\ge3\) and let \(Q\ge2t\) be a prime power.
-There is a \(K_t\)-saturated graph \(H_{t,Q}\) with
-\begin{equation}\label{eq:H-parameters}
- \begin{aligned}
- |V(H_{t,Q})|&=(t-1)(t-2)(Q^2+Q)+Q^2,\\
- \Delta(H_{t,Q})&=
- \begin{cases}
- 2Q+2,&t=3,\\
- Q\bigl((t-2)(2t-3)+1\bigr)-(t-2),&t\ge4.
- \end{cases}
- \end{aligned}
-\end{equation}
-In particular, for fixed \(t\), the order is \(\Theta_t(Q^2)\)
-and the maximum degree is \(O_t(Q)\).
-\end{lemma}
-
-\begin{proof}
-Let \(F\) be a field of order \(Q\). The levels are
-\(F\cup\{\infty\}\), given any linear order, and the places in
-each level are indexed by \(\mathbb Z/Q\mathbb Z\) through a fixed
-bijection with \(F\). For each \((a,b)\in F^2\), form a line
-\(L_{a,b}\) with coordinate \(au+b\) in finite level \(u\) and
-coordinate \(a\) in level \(\infty\).
-Every point lies on \(Q\) lines. Two distinct lines meet, and
-two points in different levels lie on a line; these assertions
-follow by solving the corresponding linear equations over \(F\).
-
-First suppose \(t\ge4\), and put \(m=t-2\).
-A core vertex is a quadruple \((i,j,\tau,c)\), where \(i\) is its
-level, \(j\in\mathbb Z/Q\mathbb Z\) its place,
-\(\tau\in\mathbb Z/m\mathbb Z\) its type, and
-\(c\in\{0,\ldots,m\}\) its copy. In one level, adjacency means
-that the copies differ and the \((j,\tau)\) pairs differ.
-Between levels \(i<i'\), adjacency means
-\[
- \tau'=\tau+1,\qquad j'\in\{j+1,\ldots,j+m\}.
-\]
-Add an independent vertex for each line, adjacent to all
-\(m(m+1)\) core vertices at each of its points.
-Place arithmetic is modulo \(Q\), irrespective of the
-characteristic of \(F\).
-
-\emph{Excluding \(K_t\).}
-A core triangle cannot occupy three levels: its edges would
-require both \(\tau''=\tau+1\) and \(\tau''=\tau+2\) modulo
-\(m\ge2\). A clique in one level has at most \(m+1\) vertices.
-For a clique meeting two levels, the types in each level agree,
-and its place sets \(A,B\) satisfy
-\(B-A\subseteq\{1,\ldots,m\}\pmod Q\).
-We claim that \(|A|+|B|\le m+1\).
-Fix \(b_0\in B\), write \(A=\{b_0-s:s\in S\}\) with
-\(S\subseteq\{1,\ldots,m\}\), and let \(s_0=\min S\).
-Relative to \(a_0=b_0-s_0\), write \(A=-R\) and \(B=J\),
-where \(R=S-s_0\subseteq\{0,\ldots,m-1\}\) and
-\(J\subseteq\{1,\ldots,m\}\).
-For every \(d\in R\) and \(j\in J\), the integer \(d+j\)
-lies between \(1\) and \(2m-1<Q\); its residue belongs to
-\(\{1,\ldots,m\}\), so \(d+j\le m\).
-Thus
-\[
- |A|+|B|=|R|+|J|\le(\max R+1)+\max J\le m+1.
-\]
-A clique in a line neighborhood has at most \(m\) vertices
-in one level, since the places agree and the types must differ.
-If it meets two levels, the same-type observation permits at
-most one vertex in each. Thus every line neighborhood is
-\(K_{m+1}\)-free, and the whole graph is \(K_t\)-free.
-
-\emph{Saturation.}
-We exhibit a common \(K_m\) for each missing edge \(xy\).
-For two line vertices, take their intersection point and
-\(m\) core vertices there of distinct types and copies.
-For a core vertex and a nonincident line, take all \(m\) types
-at the line's point in the core vertex's level, using the
-\(m\) other copies.
-
-For two core vertices in one level with equal copies, take a
-third place and all \(m\) types there, using the other copies.
-If their copies differ, nonadjacency forces their places and
-types to agree. Take a line through that point and \(m-1\)
-core vertices there, using the other types and copies.
-
-Finally, let \(x\) lie below \(y=(i',j',\tau',c')\).
-In the level of \(x\), take the \(m\) places
-\(j'-1,\ldots,j'-m\), of type \(\tau'-1\), in the copies
-other than that of \(x\). They form a \(K_m\) adjacent to
-\(y\). None has the same place and type as \(x\), since
-that would make \(x\) adjacent to \(y\); hence all are
-also adjacent to \(x\).
-
-\emph{The case \(t=3\).}
-Use two copies at each point, with no type coordinate and no
-edges between core vertices in different levels. Within one
-level, join vertices exactly when both their places and their
-copies differ. Add the line vertices as before.
-The core is bipartite and every line neighborhood is independent,
-so the graph is triangle-free. Two line vertices have a common
-core neighbor at their intersection. A core vertex and a
-nonincident line have a common neighbor at the line's point
-in the same level, in the other copy. Two core vertices in
-one level and one copy have a common neighbor at a third place
-in the other copy; if their copies differ, a missing edge means
-that their places agree, and a line through that point is a
-common neighbor. Core vertices in different levels have a
-common line neighbor. Thus the graph is \(K_3\)-saturated.
-
-\emph{Order and degree.}
-For \(t\ge4\), there are \(m(m+1)Q(Q+1)\) core vertices
-and \(Q^2\) line vertices. A core vertex has
-\(m(mQ-1)\) neighbors in its level, \(m(m+1)Q\) in other
-levels, and \(Q\) line neighbors. A line vertex has degree
-\(m(m+1)(Q+1)\), no larger than the core degree for
-\(Q\ge2t\). For \(t=3\), the core and line degrees are
-\(2Q-1\) and \(2Q+2\), respectively. This proves
-\eqref{eq:H-parameters}.
-\end{proof}
+\section{Proof of the main theorem}
+\label{sec:main-proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
-First let \(k=2t+2\) be even, where \(t\ge3\) is fixed.
-For integers \(s\) sufficiently large that \(Q=9^s\ge2t\), set
-\[
- h=3^s,\qquad Q=h^2,\qquad H=H_{t,Q}
-\]
-using Lemma~\ref{lem:saturation}. Its order and maximum degree
-satisfy \(v=\Theta_t(h^4)\) and \(d=O_t(h^2)\), so
-\(h\to\infty\) and \(2t(t-1)hd/v\to0\). Consequently \(h\ge2t+1\), \(v\ge t\),
-\(d<v-1\), and \eqref{eq:degree-condition} hold for all
-sufficiently large \(s\).
+First let \(k=2t+2\) be even, with \(t\ge3\) fixed.
+By Alon, Erd\H{o}s, Holzman, and Krivelevich
+\cite[Theorem~7]{AEHK}, for every sufficiently large \(v\) there
+is a \(K_t\)-saturated graph \(H_v\) on \(v\) vertices with
+maximum degree \(d_v=O_t(\sqrt v)\). For the triangle-free case,
+see also \cite{HansonSeyffarth,FurediSeress}.
+Choose odd integers \(h_v\sim v^{1/4}\). Then \(h_v\to\infty\)
+and \(h_vd_v/v=O_t(v^{-1/4})\to0\), so all hypotheses of
+Proposition~\ref{prop:conversion} hold for sufficiently large \(v\).
 
-Apply Proposition~\ref{prop:conversion}, and write
-\(a=2hv\) and \(N=|V(G)|\). We have
-\[
- \frac{N}{ta}=1+\frac1h+\frac1{2v}\longrightarrow1,
- \qquad \frac d v\longrightarrow0.
-\]
-Since \(e(S)=O_t(h)\), \(e(T)=O_t(v)\), and each module has
-\(2a\) edges incident with its active set, the edges within
-modules number \(O_t(a)\). Hence
+Apply the proposition and write \(h=h_v\), \(d=d_v\),
+\(a=2hv\), and \(N=|V(G_v)|\). The order formula gives
+\(N\sim ta\). Since \(e(S)=O_t(h)\), \(e(T)=O_t(v)\),
+and each module has \(2a\) edges incident with its active set,
+the module edges number \(O_t(a)\). Hence
 \[
  \binom t2a^2\left(1-\frac d v\right)
- \le e(G)\le\binom t2a^2+O_t(a).
+ \le e(G_v)\le\binom t2a^2+O_t(a).
 \]
-It follows that
+As \(d/v\to0\), it follows that
 \[
- \frac{e(G)}{N^2}\longrightarrow
+ \frac{e(G_v)}{N^2}\longrightarrow
  \frac{\binom t2}{t^2}=\frac{t-1}{2t}
  =\frac{k-4}{2(k-2)}.
 \]
 For odd \(k=2t+3\ge9\), join each graph in the even construction
 to \(K_1\). The resulting graph is \(k\)-critical, has \(N+1\)
-vertices and \(e(G)+N\) edges, and has the same limiting density,
+vertices and \(e(G_v)+N\) edges, and has the same limiting density,
 now equal to \((k-5)/(2(k-3))\).
 \end{proof}
 
 \section*{Code availability}
 
-Theorem~\ref{thm:main} is formalized for every \(k\ge8\) in the
-top-level declaration \nolinkurl{Erdos917.dense_critical_graphs}, available at
+A Lean 4 formalization of Theorem~\ref{thm:main} and
+Corollary~\ref{cor:general}, including a formal verification of
+the saturated-graph construction, is available at
 \url{https://github.com/FireflySentinel/erdos-917}.
-Its statement uses the graph-theoretic definitions \texttt{IsCritical}
-and \texttt{edgeCount}.
-Its axiom dependencies are \texttt{propext}, \texttt{Classical.choice},
-and \texttt{Quot.sound}.
-Corollary~\ref{cor:general} is formalized as
-\nolinkurl{Erdos917.corollary_two}, using \texttt{fk},
-\texttt{erdosCoefficient}, and \texttt{toftCoefficient} for the
-extremal function and the two comparison coefficients; its \(k=12\)
-instance is \nolinkurl{Erdos917.f12_limsup_ge_two_fifths}.
 
 \section*{Declaration of generative AI and AI-assisted technologies in the writing process}
 

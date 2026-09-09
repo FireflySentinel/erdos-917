@@ -85,8 +85,6 @@ lemma coefficients_nine : constructionDensity 9 = 1/3 ∧
     erdosCoefficient 9 = 1/3 ∧ toftCoefficient 9 = 1/3 := by
   norm_num [constructionDensity,erdosCoefficient,toftCoefficient,toftDelta,Nat.even_iff]
 
-lemma fk_twelve (n : ℕ) : fk 12 n = f12 n := rfl
-
 lemma edgeCount_le_fk {k n : ℕ} {G : SimpleGraph (Fin n)}
     (hG : IsCritical G k) : edgeCount G ≤ fk k n := by
   apply le_csSup ((Set.toFinite _).image edgeCount).bddAbove

@@ -10,7 +10,7 @@ def baseBound (n q : ℕ) : ℕ := 2*(n+3)^2*q
 def baseDegree (n q : ℕ) : ℕ :=
   if n = 0 then 2*(q+1) else q*((n+1)*(2*n+3)+1)-(n+1)
 
-/-- Lemma 5 for clique order `n + 3`, including the attained maximum degree. -/
+/-- The saturated-graph construction for clique order `n + 3`, with exact maximum degree. -/
 theorem exists_prime_power_exact_model (n p e : ℕ) [Fact p.Prime] (he : e ≠ 0)
     (hq : 2*(n+3) ≤ p^e) :
     ∃ G : SimpleGraph (Fin (baseOrder n (p^e))), Saturated n G ∧

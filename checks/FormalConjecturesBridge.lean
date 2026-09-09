@@ -2,7 +2,7 @@ import Erdos917
 
 /-! # Explicit statements for Erdős Problem 917
 
-The extremal-function result refutes the general asymptotic formula at $k=12$.
+The statements cover every chromatic number in the main theorem.
 Edge-criticality is expressed by a decrease in chromatic number after deleting an edge.
 -/
 
@@ -24,49 +24,68 @@ noncomputable def extremalEdges (k n : ℕ) : ℕ :=
   sSup ((fun G : SimpleGraph (Fin n) => Nat.card G.edgeSet) ''
     {G | IsEdgeCriticalGraph G k})
 
-private theorem criticalGraph_twelve_iff {V : Type*} (G : SimpleGraph V) :
-    IsEdgeCriticalGraph G 12 ↔ IsEdgeCritical G 12 := by
+theorem criticalGraph_iff (k : ℕ) (hk : 0 < k) {V : Type*} (G : SimpleGraph V) :
+    IsEdgeCriticalGraph G k ↔ IsEdgeCritical G k := by
+  have hs : ((k-1 : ℕ) : ℕ∞) + 1 = k := by
+    exact_mod_cast Nat.sub_add_cancel (show 1 ≤ k by omega)
   constructor
-  · rintro ⟨hk, h⟩
-    refine ⟨hk, fun u v huv => ?_⟩
+  · rintro ⟨hG,h⟩
+    refine ⟨hG,fun u v huv => ?_⟩
     apply chromaticNumber_le_iff_colorable.mp
-    have hlt := h u v huv
-    rw [hk] at hlt
-    exact Order.le_of_lt_add_one (show
-      (G.deleteEdges {s(u, v)}).chromaticNumber < (11 : ℕ∞) + 1 by norm_num; exact hlt)
-  · rintro ⟨hk, h⟩
-    refine ⟨hk, fun u v huv => ?_⟩
-    rw [hk]
-    exact lt_of_le_of_lt (h u v huv).chromaticNumber_le (by norm_num)
+    apply Order.le_of_lt_add_one
+    rw [hs,← hG]
+    exact h u v huv
+  · rintro ⟨hG,h⟩
+    refine ⟨hG,fun u v huv => ?_⟩
+    rw [hG]
+    exact lt_of_le_of_lt (h u v huv).chromaticNumber_le (by
+      exact_mod_cast Nat.sub_lt hk (by decide : 0 < 1))
 
-private theorem extremalEdges_twelve (n : ℕ) : extremalEdges 12 n = f12 n := by
-  simp only [extremalEdges, f12, fk, criticalGraph_twelve_iff]
+theorem extremalEdges_eq_fk (k : ℕ) (hk : 0 < k) (n : ℕ) :
+    extremalEdges k n = fk k n := by
+  simp only [extremalEdges,fk,criticalGraph_iff k hk]
   rfl
 
-/-- The normalized extremal edge count at $k=12$ cannot converge below $2/5$. -/
-theorem erdos_917.variants.k_twelve :
-    ∀ c : ℝ, c < 2 / 5 →
-      ¬Tendsto (fun n : ℕ => (extremalEdges 12 n : ℝ) / (n : ℝ) ^ 2)
-        atTop (𝓝 c) := by
-  intro c hc
-  simpa only [extremalEdges_twelve] using f12_not_density_below_two_fifths hc
+/-- The general density lower bound in the edge-deletion convention. -/
+theorem erdos_917.variants.density_lower_bound (k : ℕ) (hk : 8 ≤ k) :
+    constructionDensity k ≤
+      limsup (fun n : ℕ => (extremalEdges k n : ℝ)/(n : ℝ)^2) atTop := by
+  simpa only [extremalEdges_eq_fk k (by omega)] using fk_limsup_ge_density k hk
 
-/-- info: 'Erdos917.erdos_917.variants.k_twelve' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- No limiting density can lie below the construction, for any `k ≥ 8`. -/
+theorem erdos_917.variants.no_limit_below (k : ℕ) (hk : 8 ≤ k) {c : ℝ}
+    (hc : c < constructionDensity k) :
+    ¬ Tendsto (fun n : ℕ => (extremalEdges k n : ℝ)/(n : ℝ)^2) atTop (𝓝 c) := by
+  simpa only [extremalEdges_eq_fk k (by omega)] using fk_not_density_below k hk hc
+
+/-- Corollary 2 in the extremal-function convention of the problem statement. -/
+theorem erdos_917.variants.corollary (k : ℕ) (hk : 8 ≤ k) (h9 : k ≠ 9) :
+    constructionDensity k ≤
+      limsup (fun n : ℕ => (extremalEdges k n : ℝ)/(n : ℝ)^2) atTop ∧
+    erdosCoefficient k < constructionDensity k ∧
+    toftCoefficient k < constructionDensity k ∧
+    ¬ Asymptotics.IsEquivalent atTop (fun n : ℕ => (extremalEdges k n : ℝ))
+      (fun n : ℕ => erdosCoefficient k*(n : ℝ)^2) := by
+  simpa only [extremalEdges_eq_fk k (by omega)] using corollary_two k hk h9
+
+/-- info: 'Erdos917.erdos_917.variants.no_limit_below' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
-#print axioms Erdos917.erdos_917.variants.k_twelve
+#print axioms Erdos917.erdos_917.variants.no_limit_below
 
-/-- The proposed asymptotic formula fails at $k=12$, refuting its universal form. -/
+/-- info: 'Erdos917.erdos_917.variants.corollary' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms Erdos917.erdos_917.variants.corollary
+
+/-- The general result refutes the universal formulation of part (iii). -/
 theorem erdos_917.parts.iii :
     False ↔ ∀ k : ℕ, 6 ≤ k →
-      Tendsto (fun n : ℕ => (extremalEdges k n : ℝ) / (n : ℝ) ^ 2)
-        atTop (𝓝 ((1 / 2 : ℝ) * (1 - 1 / ((k / 3 : ℕ) : ℝ)))) := by
+      Tendsto (fun n : ℕ => (extremalEdges k n : ℝ)/(n : ℝ)^2)
+        atTop (𝓝 ((1/2 : ℝ)*(1-1/((k/3 : ℕ) : ℝ)))) := by
   constructor
   · exact False.elim
   · intro h
-    have h12 := h 12 (by norm_num)
-    have hnot := erdos_917.variants.k_twelve (3 / 8) (by norm_num)
-    apply hnot
-    convert h12 using 1; norm_num
+    exact erdos_917.variants.no_limit_below 8 (by decide)
+      (erdosCoefficient_lt_density 8 (by decide) (by decide)) (h 8 (by decide))
 
 /-- info: 'Erdos917.erdos_917.parts.iii' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in

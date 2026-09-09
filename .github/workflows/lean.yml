@@ -24,4 +24,4 @@ jobs:
       - name: Check axioms and the community statement proof bridge
         run: lake test
       - name: Replay project declarations through the kernel
-        run: lake env leanchecker -v Erdos917
+        run: lake env leanchecker -v Erdos917 Check FormalConjecturesBridge

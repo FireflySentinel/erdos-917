@@ -17,7 +17,7 @@ With [Elan](https://github.com/leanprover/elan) installed, run from the reposito
 lake exe cache get
 lake build
 lake test
-LEAN_NUM_THREADS=2 lake env leanchecker Erdos917
+LEAN_NUM_THREADS=2 lake env leanchecker Erdos917 Check FormalConjecturesBridge
 ```
 
 ## Proof correspondence
@@ -25,19 +25,23 @@ LEAN_NUM_THREADS=2 lake env leanchecker Erdos917
 | Manuscript argument | Lean source |
 |---|---|
 | Theorem 1: every $k\ge8$ | [Main.lean](Erdos917/General/Main.lean), `dense_critical_graphs` |
-| Corollary 2: coefficient comparisons and failure of the proposed asymptotic formula | [Comparisons.lean](Erdos917/General/Comparisons.lean), `corollary_two`; the $k=12$ instance is `f12_limsup_ge_two_fifths` in [Extremal.lean](Erdos917/General/Extremal.lean) |
+| Corollary 2: coefficient comparisons and failure of the proposed asymptotic formula | [Comparisons.lean](Erdos917/General/Comparisons.lean), `corollary_two` |
 | Lemma 3: module colorings for any palette of at least three colors | [Module.lean](Erdos917/General/Module.lean) |
 | Proposition 4: criticality, order, and edge bounds | [Conversion.lean](Erdos917/General/Conversion.lean), [EdgeCount.lean](Erdos917/General/EdgeCount.lean) |
-| Lemma 5: finite-field construction, saturation, and exact maximum degree | [PrimePowerModel.lean](Erdos917/General/PrimePowerModel.lean), `exists_prime_power_exact_model` |
+| Saturated graphs used in Theorem 1 | [PrimePowerModel.lean](Erdos917/General/PrimePowerModel.lean), `exists_prime_power_exact_model` |
+| Any limiting density is at least the constructed density, for every $k\ge8$ | [Extremal.lean](Erdos917/General/Extremal.lean), `fk_not_density_below` |
 
-The proof in `General/` constructs the saturated graphs over finite fields,
-including the triangle-free case. The $k=12$ results specialize this proof.
+The paper invokes AEHK Theorem 7. The Lean proof constructs the needed
+saturated graphs over finite fields, including the triangle-free case,
+and proves their saturation and exact maximum degree directly.
 [Definitions.lean](Erdos917/Definitions.lean) contains `IsCritical`,
 `IsEdgeCritical`, `edgeCount`, and `fk`; the plane geometry is in
 [Geometry.lean](Erdos917/Geometry.lean).
 
-The [proof bridge](checks/FormalConjecturesBridge.lean) derives the corresponding
-problem statements and is included in `lake test`.
+The [proof bridge](checks/FormalConjecturesBridge.lean) proves the density lower
+bound for every $k\ge8$ and both coefficient improvements and failure of the
+asymptotic formula for every $k\ge8$, $k\ne9$, using the problem's
+edge-deletion convention. It is included in `lake test`.
 [`checks/Check.lean`](checks/Check.lean) checks the main theorem's type and guards
 the axiom dependencies to `propext`, `Classical.choice`, and `Quot.sound`.
 

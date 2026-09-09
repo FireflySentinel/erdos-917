@@ -25,7 +25,4 @@ noncomputable def edgeCount {V : Type*} (G : SimpleGraph V) : ℕ :=
 noncomputable def fk (k n : ℕ) : ℕ :=
   sSup (edgeCount '' {G : SimpleGraph (Fin n) | IsEdgeCritical G k})
 
-/-- The twelve-critical instance of the extremal function. -/
-noncomputable abbrev f12 (n : ℕ) : ℕ := fk 12 n
-
 end Erdos917

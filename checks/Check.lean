@@ -2,14 +2,6 @@ import Erdos917
 
 /-! Axiom checks and the statement of the general construction. -/
 
-/-- info: 'Erdos917.not_density_three_eighths' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
-#print axioms Erdos917.not_density_three_eighths
-
-/-- info: 'Erdos917.f12_not_density_below_two_fifths' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
-#print axioms Erdos917.f12_not_density_below_two_fifths
-
 /-- info: 'Erdos917.dense_critical_graphs' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Erdos917.dense_critical_graphs
@@ -26,10 +18,6 @@ example (k : ℕ) (hk : 8 ≤ k) :
         (𝓝 (if Even k then ((k : ℝ)-4)/(2*((k : ℝ)-2))
           else ((k : ℝ)-5)/(2*((k : ℝ)-3)))) := dense_critical_graphs k hk
 
-/-- info: 'Erdos917.f12_limsup_ge_two_fifths' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
-#print axioms Erdos917.f12_limsup_ge_two_fifths
-
 /-- info: 'Erdos917.corollary_two' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Erdos917.corollary_two
@@ -43,3 +31,14 @@ example (k : ℕ) (hk : 8 ≤ k) (h9 : k ≠ 9) :
 open Erdos917 in
 example : constructionDensity 9 = 1/3 ∧ erdosCoefficient 9 = 1/3 ∧
     toftCoefficient 9 = 1/3 := coefficients_nine
+
+/-- info: 'Erdos917.fk_not_density_below' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos917.fk_not_density_below
+
+open Filter Topology Erdos917 in
+example (k : ℕ) (hk : 8 ≤ k) {c : ℝ}
+    (hc : c < if Even k then ((k : ℝ)-4)/(2*((k : ℝ)-2))
+      else ((k : ℝ)-5)/(2*((k : ℝ)-3))) :
+    ¬ Tendsto (fun n : ℕ => (fk k n : ℝ)/(n : ℝ)^2) atTop (𝓝 c) :=
+  fk_not_density_below k hk hc
